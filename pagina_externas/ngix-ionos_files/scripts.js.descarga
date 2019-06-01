@@ -1,0 +1,140 @@
+var Rating = {
+
+    /**
+     *
+     * @param pid
+     * @constructor
+     */
+    Init: function () {
+        this.Handle_GetRatings();
+        var x = $('.articleBox .social-media').eq(0).clone();
+        $('.articleBox').append(x);
+        this.Handle_StarsInit();
+    },
+
+    Handle_StarsInit: function () {
+        $('label[data-role=star]').each(function () {
+            $(this).click(function () {
+                Rating.Element('star').removeClass('star-rating__ico_half');
+                Rating.Handle_StarClicked($(this).attr('data-amount'));
+            });
+        });
+    },
+
+    /**
+     *
+     * @returns {boolean}
+     * @constructor
+     */
+    Handle_GetRatings: function () {
+       $.ajax($('base').attr('href') + window.location.pathname.replace('/digitalguide/', ''), {
+            data: {
+                'type': '21051990',
+                'tx_rating_rating': {
+                    'action': 'getAjaxData'
+                },
+                'nc': '1'
+            },
+            success: function (data) {
+                var d = JSON.parse(data).data;
+
+                Rating.Handle_UpdateUI(d, d.userRating.stars,false);
+
+            }
+        });
+
+    },
+
+    /**
+     *
+     * @param e
+     * @constructor
+     */
+    Handle_StarClicked: function (e) {
+        $.ajax($('base').attr('href') + window.location.pathname.replace('/digitalguide/', ''), {
+            data: {
+                'type': '21051990',
+                'tx_rating_rating': {
+                    'action': 'addAjaxRating',
+                    'stars': e
+                },
+                'nc': '1'
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (!response.state) {
+                    return Rating.Handle_StarClickedFailure(response.data);
+                }
+                return Rating.Handle_StarClickedSuccess(response.data, e);
+            }
+        });
+
+    },
+
+    /**
+     *
+     * @param data
+     * @constructor
+     */
+    Handle_StarClickedFailure: function (data) {
+        // error?!
+    },
+
+    /**
+     *
+     * @param data
+     * @constructor
+     */
+    Handle_StarClickedSuccess: function (data, stars) {
+        this.Handle_UpdateUI(data, stars, true);
+    },
+
+    Handle_UpdateUI: function (data, stars, userClicked) {
+
+        var wording = this.Element('ratingsWording');
+        var average = data.average.toString().split('.');
+        var userClicked = typeof(userClicked) == 'undefined' || userClicked == false ? false : true;
+        var averageElement = this.Element('ratingsAverage');
+
+        if (!userClicked) {
+
+            this.Element('ratingStarInput' + Math.round(data.average)).prop('checked', true);
+
+            if (typeof(average[1]) !== 'undefined') {
+
+                if (average[1] > 3 && average[1] <= 6) {
+                    this.Element('ratingStarInput' + (Math.ceil(data.average) - 1)).prop('checked', true);
+                    $('[data-amount=' + (parseInt(average[0]) + 1) + ']').addClass('star-rating__ico_half');
+                }
+
+            }
+
+        } else {
+            jQuery(this.Element('ratingStarInput' + stars)).prop('checked', true);
+            console.log(jQuery(this.Element('ratingStarInput' + stars)).attr('checked'));
+        }
+
+        if (!!data.userRating.stars) {
+                if(userClicked){
+                    wording.fadeOut(function () {
+                        wording.html(wording.attr('data-thanks')).addClass('success').fadeIn();
+                        wording.fadeIn();
+                    });
+                }
+        }
+
+        this.Element('ratingTotalAmount').html(data.total);
+
+        averageElement.hide();
+        if (data.average > 0) {
+            averageElement.show();
+            averageElement.html(data.average);
+        }
+
+    },
+
+    Element: function (name) {
+        return $('[data-role=' + name + ']');
+    }
+
+};

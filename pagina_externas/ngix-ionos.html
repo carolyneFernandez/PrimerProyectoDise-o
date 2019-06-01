@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/ -->
+<html class="js cssremunit" lang="es"><head itemscope="" itemtype="http://schema.org/WebSite"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta itemprop="name" content="1&amp;1 IONOS Digital Guide">
+  <script type="text/javascript" async="" src="./ngix-ionos_files/analytics.js.descarga"></script><script type="text/javascript" defer="" async="" src="./ngix-ionos_files/js"></script><script src="./ngix-ionos_files/1247733445296294" async=""></script><script async="" src="./ngix-ionos_files/fbevents.js.descarga"></script><script async="" src="./ngix-ionos_files/obtp.js.descarga" type="text/javascript"></script><script async="" src="./ngix-ionos_files/tfa.js.descarga" id="tb_tfa_script"></script><script src="./ngix-ionos_files/satelliteLib-f68a2914f4e4738802a1a21a096f14b2a173b441.js.descarga"></script><script type="text/javascript">
+  window._tfa = window._tfa || [];
+  window._tfa.push({notify: 'event', name: 'page_view'});
+  !function (t, f, a, x) {
+         if (!document.getElementById(x)) {
+            t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
+         }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/unip/1123688/tfa.js',
+  'tb_tfa_script');
+</script>
+<noscript>
+  <img src='//trc.taboola.com/1123688/log/3/unip?en=page_view'
+      width='0' height='0' style='display:none'/>
+</noscript>
+
+
+<!-- 
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2018 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at https://typo3.org/
+-->
+
+<!--<base href="https://www.ionos.es/digitalguide/">--><base href=".">
+
+
+<meta name="generator" content="TYPO3 CMS">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="meta-category" content="Digitalguide">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="robots" content="index,follow">
+
+
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/0359380a4c.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/transkript.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/footer.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/bootstrap.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/font-awesome.min.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/main.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/rainbow.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/prism-line-numbers.css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/font-awesome.min(1).css" media="all">
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/style.css" media="all">
+
+
+
+<script src="./ngix-ionos_files/modernizr.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/jquery-3.3.1.min.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/scripts.js.descarga" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" media="all" href="./ngix-ionos_files/cookie-styling-dark-bottom.css">
+      <link rel="shortcut icon" href="https://www.ionos.es/favicon.ico"><link rel="canonical" href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/"><link rel="alternate" hreflang="es" href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/"><link rel="alternate" hreflang="es-ES" href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/"><link rel="alternate" hreflang="en-GB" href="https://www.ionos.co.uk/digitalguide/server/configuration/nginx-tutorial-getting-started-with-nginxconf/"><link rel="alternate" hreflang="en" href="https://www.ionos.com/digitalguide/server/configuration/nginx-tutorial-getting-started-with-nginxconf/"><link rel="alternate" hreflang="en-US" href="https://www.ionos.com/digitalguide/server/configuration/nginx-tutorial-getting-started-with-nginxconf/"><link rel="alternate" hreflang="en-CA" href="https://www.ionos.ca/digitalguide/server/configuration/nginx-tutorial-getting-started-with-nginxconf/"><link rel="alternate" hreflang="fr" href="https://www.ionos.fr/digitalguide/serveur/configuration/tutoriel-nginx-premiers-pas-avec-nginxconf/"><link rel="alternate" hreflang="fr-FR" href="https://www.ionos.fr/digitalguide/serveur/configuration/tutoriel-nginx-premiers-pas-avec-nginxconf/"><link rel="alternate" hreflang="es-MX" href="https://www.ionos.mx/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/"><link rel="alternate" hreflang="it-IT" href="https://www.ionos.it/digitalguide/server/configurazione/tutorial-nginx-primi-passi-con-nginxconf/"><link rel="alternate" hreflang="de-AT" href="https://www.ionos.at/digitalguide/server/konfiguration/nginx-tutorial-erste-schritte-mit-der-nginxconf/"><link rel="alternate" hreflang="de-DE" href="https://www.ionos.de/digitalguide/server/konfiguration/nginx-tutorial-erste-schritte-mit-der-nginxconf/">
+	<title>nginx tutorial: primeros pasos con nginx.conf - 1&amp;1 IONOS</title>
+	<meta name="description" content="¿Reload o restart nginx? En nuestro tutorial encontrarás toda la información para configurar un proxy nginx y hacer cambios en el archivo de configuración.">
+	
+<meta property="og:title" content="nginx tutorial: primeros pasos con nginx.conf">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.ionos.es/digitalguide/fileadmin/DigitalGuide/Teaser/nginx-t.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/">
+<meta property="og:site_name" content="1&amp;1 Digitalguide">
+<meta property="og:description" content="¿Reload o restart nginx? En nuestro tutorial encontrarás toda la información para configurar un proxy nginx y hacer cambios en el archivo de configuración.">
+<meta property="og:locale" content="es_ES">
+<script type="text/javascript">
+        var cookieContent = '';
+        var params = document.location.search;
+
+        if (params.indexOf('ac') != -1) {
+          var regExp = new RegExp(/ac=([a-z0-9.]*)/i);
+          var matches = params.match(regExp);
+
+          if (matches != null && matches.length > 0) {
+              cookieContent = matches[1];
+          }
+        }
+        else {
+            var referrer = document.referrer;
+            var cookieValueSearchEngine = 'OM.WE.WEo50K361688T7073a';
+            var cookieValueOther = 'OM.WE.WEd32K41385T7073a';
+
+            if (referrer != '') {
+                var re = new RegExp(/^http[s]?:\/\/(www\.)?(google|bing|yahoo)/i);
+                var matches = referrer.match(re);
+
+                cookieContent = (matches != null && matches.length > 0) ? cookieValueSearchEngine : cookieValueOther;
+            }
+        }
+        var cookieName = 'ac-whorder-es';
+        if(document.cookie.indexOf(cookieName) == -1 && cookieContent != '') {
+            var thirtyDaysFromNow = Date.now() + (86400000 * 30);
+            var expiresDate = new Date(thirtyDaysFromNow).toUTCString(); 
+            var cookieSettings = '; expires=' + expiresDate + '; path=/';
+            document.cookie = cookieName + '=' + cookieContent + cookieSettings;
+        }
+        </script>
+<style type="text/css">.js-acc-hidden{position:absolute !important;left:-9999px !important;top:-9999px !important;display:block !important; width: 100% !important;}</style><style type="text/css">.js-slide-hidden{position:absolute !important;left:-9999px !important;top:-9999px !important;display:block !important}</style><style>pre code.rainbow .line { position: relative; padding-right: 10px; }pre code.rainbow .line:before{ content: attr(data-line); display: inline-block; text-align: right; white-space: nowrap; }pre code.rainbow .line:after{ content:''; position: absolute; left: 0; bottom: 0; }</style><script src="./ngix-ionos_files/satellite-5bcd8ec264746d3348001473.js.descarga"></script><script src="./ngix-ionos_files/f.txt"></script><script type="text/javascript" id="s_s:0:Integrate:s_1_Integrate_Wywy_get_0" defer="" src="./ngix-ionos_files/saved_resource"></script></head>
+<body class="see-drop page-1151"><div class="cc_banner-wrapper "><div class="cc_banner cc_container cc_container--open"><a href="https://www.ionos.es/digitalguide/" data-cc-event="click:dismiss" rel="nofollow" class="cc_btn cc_btn_accept_all">OK</a><p class="cc_message">Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación. Si continua navegando, consideramos que acepta su uso. Puede obtener más información, o bien conocer cómo cambiar la configuración de su navegador en nuestra <a data-cc-if="options.link" class="cc_more_info" href="https://www.ionos.es/cookies">Política de Cookies.</a></p></div></div><script src="./ngix-ionos_files/f(1).txt"></script>
+
+
+<div id="wrapper">
+
+	
+	<header id="header" style="width: 1349px; position: fixed; top: 0px; left: 0px;">
+		
+		<div class="header-holder">
+			<div class="container">
+					<div class="logo">
+							<a href="https://www.ionos.es/digitalguide/">
+								<span class="text">Digital Guide</span>
+								<div class="img-logo"><p class="powerd">powered by</p><img src="./ngix-ionos_files/logo.svg" alt="IONOS"></div>
+							</a>
+						</div>
+				<div class="nav-logo">
+					<a href="https://www.ionos.es/digitalguide/#"><img id="nav-logo-small" src="./ngix-ionos_files/logo_blue.svg" alt="IONOS" style="width: auto;height: 35px;padding: 2px 5px 5px 5px;"></a>
+				</div>
+				<nav id="nav"> <a href="https://www.ionos.es/digitalguide/#" class="nav-opener"><span></span></a> <div class="nav-drop"> <div class="nav-wrap"> <ul id="navigation" class="navigation"><li class="has-drop-down"><a href="https://www.ionos.es/digitalguide/paginas-web/" class="has-drop-down-a">Páginas web</a><div class="inner-drop hidden-drop"><div class="container"><ul><li><a href="https://www.ionos.es/digitalguide/paginas-web/creacion-de-paginas-web/" title="Creación de páginas web">Creación de páginas web</a></li><li><a href="https://www.ionos.es/digitalguide/paginas-web/diseno-web/" title="Diseño web">Diseño web</a></li><li><a href="https://www.ionos.es/digitalguide/paginas-web/desarrollo-web/" title="Desarrollo web">Desarrollo web</a></li><li><a href="https://www.ionos.es/digitalguide/paginas-web/derecho-digital/" title="Derecho  digital">Derecho  digital</a></li></ul></div></div></li><li class="has-drop-down"><a href="https://www.ionos.es/digitalguide/hosting/" class="has-drop-down-a">Hosting</a><div class="inner-drop hidden-drop"><div class="container"><ul><li><a href="https://www.ionos.es/digitalguide/hosting/cms/" title="CMS">CMS</a></li><li><a href="https://www.ionos.es/digitalguide/hosting/blogs/" title="Blogs">Blogs</a></li><li><a href="https://www.ionos.es/digitalguide/hosting/cuestiones-tecnicas/" title="Cuestiones técnicas">Cuestiones técnicas</a></li></ul></div></div></li><li class="inner-drop-active has-drop-down"><a href="https://www.ionos.es/digitalguide/servidores/" class="has-drop-down-a">Servidores</a><div class="inner-drop"><div class="container"><ul><li><a href="https://www.ionos.es/digitalguide/servidores/know-how/" title="Know How">Know How</a></li><li><a href="https://www.ionos.es/digitalguide/servidores/configuracion/" title="Configuración">Configuración</a></li><li><a href="https://www.ionos.es/digitalguide/servidores/seguridad/" title="Seguridad">Seguridad</a></li><li><a href="https://www.ionos.es/digitalguide/servidores/herramientas/" title="Herramientas">Herramientas</a></li></ul></div></div></li><li class="has-drop-down"><a href="https://www.ionos.es/digitalguide/dominios/" class="has-drop-down-a">Dominios</a><div class="inner-drop hidden-drop"><div class="container"><ul><li><a href="https://www.ionos.es/digitalguide/dominios/extensiones-de-dominio/" title="Extensiones de dominio">Extensiones de dominio</a></li><li><a href="https://www.ionos.es/digitalguide/dominios/gestion-de-dominios/" title="Gestión de dominios">Gestión de dominios</a></li><li><a href="https://www.ionos.es/digitalguide/dominios/noticias-sobre-dominos/" title="Noticias sobre dominos">Noticias sobre dominos</a></li><li><a href="https://www.ionos.es/digitalguide/dominios/consejos-sobre-dominios/" title="Consejos sobre dominios">Consejos sobre dominios</a></li></ul></div></div></li><li class="has-drop-down"><a href="https://www.ionos.es/digitalguide/online-marketing/" class="has-drop-down-a">Online Marketing</a><div class="inner-drop hidden-drop"><div class="container"><ul><li><a href="https://www.ionos.es/digitalguide/online-marketing/vender-en-internet/" title="Vender en Internet">Vender en Internet</a></li><li><a href="https://www.ionos.es/digitalguide/online-marketing/marketing-para-motores-de-busqueda/" title="Marketing para motores de búsqueda">Marketing para motores de búsqueda</a></li><li><a href="https://www.ionos.es/digitalguide/online-marketing/redes-sociales/" title="Redes sociales">Redes sociales</a></li><li><a href="https://www.ionos.es/digitalguide/online-marketing/analisis-web/" title="Análisis web">Análisis web</a></li></ul></div></div></li><li class="has-drop-down"><a href="https://www.ionos.es/digitalguide/correo-electronico/" class="has-drop-down-a">Correo electrónico</a><div class="inner-drop hidden-drop"><div class="container"><ul><li><a href="https://www.ionos.es/digitalguide/correo-electronico/e-mail-marketing/" title="E-mail marketing">E-mail marketing</a></li><li><a href="https://www.ionos.es/digitalguide/correo-electronico/seguridad-correo-electronico/" title="Seguridad correo electrónico">Seguridad correo electrónico</a></li><li><a href="https://www.ionos.es/digitalguide/correo-electronico/cuestiones-tecnicas/" title="Cuestiones técnicas">Cuestiones técnicas</a></li></ul></div></div></li><li class="has-drop-down"><a href="https://www.ionos.es/" class="has-drop-down-a">Productos 1&amp;1 IONOS</a><div class="inner-drop hidden-drop">
+    <div class="container">
+        <ul id="second-navigation" class="second-navigation">
+            <li class="has-drop-down level2 second-has-drop-down">
+                <a title="dominios" class="has-drop-down-a has-drop-down-b">Dominios</a>
+                <div class="level3">
+                    <div class="container">
+                        <ul>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/dominios/dominios" class="has-drop-down-c has-drop-down-b">Dominios: Registra y compra ahora</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/dominios/nuevas-terminaciones-dominios" class="has-drop-down-c has-drop-down-b">Nuevos nombres de Dominios</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/dominios/transferencia-dominios" class="has-drop-down-c has-drop-down-b">Transferencia de Dominios</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/dominios/compra-dominios" class="has-drop-down-c has-drop-down-b">Precios de Dominios</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/dominios/registrar-dominio-privado" class="has-drop-down-c has-drop-down-b">Registro de dominio privado</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/tools/whois-domain" class="has-drop-down-c has-drop-down-b">Información Whois</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/dominios/domain-check" class="has-drop-down-c has-drop-down-b">Domain Check</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="has-drop-down level2 second-has-drop-down">
+                <a title="correooffice" class="has-drop-down-a has-drop-down-b">Correo &amp; Office</a>
+                <div class="level3">
+                    <div class="container">
+                        <ul>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/soluciones-oficina/correo" class="has-drop-down-c has-drop-down-b">Dirección de correo electrónico</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="has-drop-down level2 second-has-drop-down">
+                <a title="servidores" class="has-drop-down-a has-drop-down-b">Servidores</a>
+                <div class="level3">
+                    <div class="container">
+                        <ul>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/pro/cloud-ionos/" class="has-drop-down-c has-drop-down-b">Servidor Cloud</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/pro/servidores-dedicados/" class="has-drop-down-c has-drop-down-b">Servidores Dedicados</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/pro/servidores-vps/" class="has-drop-down-c has-drop-down-b">Servidores Virtuales</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/pro/servidores-vps/servidores/" class="has-drop-down-c has-drop-down-b">Servidores</a>
+                            </li>
+              <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/pro/cloud-empresarial/" class="has-drop-down-c has-drop-down-b">Cloud Empresarial</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="has-drop-down level2 second-has-drop-down">
+                <a title="seguridad" class="has-drop-down-a has-drop-down-b">Seguridad</a>
+                <div class="level3">
+                    <div class="container">
+                        <ul>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/seguridad/certificado-ssl" class="has-drop-down-c has-drop-down-b">Certificado SSL</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/tools/ssl-checker" class="has-drop-down-c has-drop-down-b">SSL Checker</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="has-drop-down level2 second-has-drop-down">
+                <a title="paginaswebhosting" class="has-drop-down-a has-drop-down-b">Páginas Web &amp; Hosting</a>
+                <div class="level3">
+                    <div class="container">
+                        <ul>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/pagina-web/crear-pagina-web" class="has-drop-down-c has-drop-down-b">Crea tu página web</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/pagina-web/templates" class="has-drop-down-c has-drop-down-b">Plantillas web</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/soluciones-ecommerce/tiendas-online" class="has-drop-down-c has-drop-down-b">Tiendas Online</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/alojamiento/linux-hosting" class="has-drop-down-c has-drop-down-b">Hosting Linux</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/alojamiento/hosting-wordpress" class="has-drop-down-c has-drop-down-b">WordPress Hosting</a>
+                            </li>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/alojamiento/windows-hosting" class="has-drop-down-c has-drop-down-b">Windows Hosting</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="has-drop-down level2 second-has-drop-down">
+                <a title="herramientas" class="has-drop-down-a has-drop-down-b">Herramientas</a>
+                <div class="level3">
+                    <div class="container">
+                        <ul>
+                            <li class="second-has-drop-down">
+                                <a href="https://www.ionos.es/tools/analisis-web" class="has-drop-down-c has-drop-down-b">Análisis Web</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/tools/analisis-seo" class="has-drop-down-c has-drop-down-b">Análisis SEO</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                <a href="https://www.ionos.es/tools/crear-favicon" class="has-drop-down-c has-drop-down-b">Crear favicon</a>
+                            </li>
+                            <li class="level second-has-drop-down">
+                                    <a href="https://www.ionos.es/tools/crear-logo" class="has-drop-down-c has-drop-down-b">Crear logo</a>
+                                </li>
+                                <li class="level second-has-drop-down">
+                                    <a href="https://www.ionos.es/tools/direccion-ip" class="has-drop-down-c has-drop-down-b">¿Cual es mi IP?</a>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div></li></ul></div></div></nav>
+				<div class="header-info">
+					<ul class="list-inline list-links">
+						<li>
+							<div class="dropdown search-box">
+								<a href="https://www.ionos.es/digitalguide/#" class="search-opener dropdown-toggle" data-toggle="dropdown"><span class="icon-search"></span></a>
+								<div class="search-drop dropdown-menu">
+									<form class="search-form" action="https://www.ionos.es/digitalguide/buscar/?tx_indexedsearch_pi2%5Baction%5D=search&amp;tx_indexedsearch_pi2%5Bsearch%5D%5BlanguageUid%5D=2&amp;tx_indexedsearch_pi2%5Bcontroller%5D=Search" method="post">
+									<fieldset>
+										<div class="form-group">
+											<input class="form-control" type="search" placeholder="Buscar" name="tx_indexedsearch_pi2[search][sword]">
+											<button type="submit"><span class="icon-search"></span></button>
+										</div>
+									</fieldset>
+									</form>
+								</div>
+							</div>
+						</li>
+						<li class="sub-drop-opener dropdown">
+							<a href="https://www.ionos.es/digitalguide/#" class="dropdown-toggle" data-toggle="dropdown">
+								Productos 1&amp;1 IONOS</a>
+							<div class="sub-drop-wrap dropdown-menu">
+								<div class="container">
+									<div class="row">
+										<div class="col-sm-3">
+    <strong class="sub-head">
+        <a href="https://www.ionos.es/digitalguide/">
+            Dominios
+
+        </a>
+    </strong>
+    <ul class="sub-menu-list list-unstyled">
+        <li>
+            <a href="https://www.ionos.es/dominios/dominios">
+                <strong class="sub-title">Dominios: Registra y compra ahora</strong>
+                <p></p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/dominios/nuevas-terminaciones-dominios">
+                <strong class="sub-title">Nuevos nombres de Dominios</strong>
+                <p> Más de 700 nuevas terminaciones de dominio</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/dominios/transferencia-dominios">
+                <strong class="sub-title">Transferencia de Dominios</strong>
+                <p> Transfiere tu dominio a 1&amp;1 fácilmente</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/dominios/compra-dominios">
+                <strong class="sub-title">Precios de Dominios</strong>
+                <p> Compra dominios a los mejores precios del mercado</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/dominios/registrar-dominio-privado">
+                <strong class="sub-title">Registro de dominio privado</strong>
+                <p> Dominio con privacidad WHOIS incluido gratis</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/tools/whois-domain">
+                <strong class="sub-title">Información Whois</strong>
+                <p> Busca información sobre un dominio</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/dominios/domain-check">
+                <strong class="sub-title">Domain Check</strong>
+                <p> </p>
+            </a>
+        </li>
+    </ul>
+    <strong class="sub-head">
+        <a href="https://www.ionos.es/digitalguide/">
+            Seguridad
+
+        </a>
+    </strong>
+    <ul class="sub-menu-list list-unstyled">
+        <li>
+            <a href="https://www.ionos.es/seguridad/certificado-ssl">
+                <strong class="sub-title">Certificado SSL</strong>
+                <p> Máxima Seguridad con accesso https</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/tools/ssl-checker">
+                <strong class="sub-title">SSL Checker</strong>
+                <p> Comprueba gratis de tu cifrado HTTPS</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="col-sm-3">
+    <strong class="sub-head">
+        <a href="https://www.ionos.es/digitalguide/">
+            Páginas Web &amp; Hosting
+
+        </a>
+    </strong>
+    <ul class="sub-menu-list list-unstyled">
+        <li>
+            <a href="https://www.ionos.es/pagina-web/crear-pagina-web">
+                <strong class="sub-title">Crea tu página web</strong>
+                <p> Crea fácilmente la página web de tu negocio</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/pagina-web/templates">
+                <strong class="sub-title">Plantillas web</strong>
+                <p> Múltiples diseños y gran variedad de plantillas</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/soluciones-ecommerce/tiendas-online">
+                <strong class="sub-title">Tiendas Online</strong>
+                <p> Crea tu propia tienda online rápidamente</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/alojamiento/alojamiento-web">
+                <strong class="sub-title">Hosting</strong>
+                <p> Alojamiento web para profesionales</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/alojamiento/linux-hosting">
+                <strong class="sub-title">Hosting Linux</strong>
+                <p> La elección ideal para Apache, PHP y MySQL</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/alojamiento/hosting-wordpress">
+                <strong class="sub-title">WordPress Hosting</strong>
+                <p> Hosting profesional para WordPress</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/alojamiento/windows-hosting">
+                <strong class="sub-title">Windows Hosting</strong>
+                <p> Alojamiento web para asp</p>
+            </a>
+        </li>
+    </ul>
+    <strong class="sub-head">
+        <a href="https://www.ionos.es/digitalguide/">
+            Correo &amp; Office
+
+        </a>
+    </strong>
+    <ul class="sub-menu-list list-unstyled">
+        <li>
+            <a href="https://www.ionos.es/soluciones-oficina/correo">
+                <strong class="sub-title">Dirección de correo electrónico</strong>
+                <p> Correo electrónico profesional</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/soluciones-oficina/microsoft-office">
+                <strong class="sub-title">Microsoft Office 365</strong>
+                <p> Trabajar de forma más productiva</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="col-sm-3">
+    <strong class="sub-head">
+        <a href="https://www.ionos.es/digitalguide/">
+            Servidores
+
+        </a>
+    </strong>
+    <ul class="sub-menu-list list-unstyled">
+        <li>
+            <a href="https://www.ionos.es/pro/cloud-ionos/">
+                <strong class="sub-title">Servidor Cloud</strong>
+                <p> Soluciones de cloud hosting y respaldo</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/pro/servidores-dedicados/">
+                <strong class="sub-title">Servidores Dedicados</strong>
+                <p> Hosting dedicado en España: Windows o Linux</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/pro/servidores-vps/">
+                <strong class="sub-title">Servidores Virtuales</strong>
+                <p> Servidor Virtual Privado al mejor precio</p>
+            </a>
+        </li>
+    <li>
+            <a href="https://www.ionos.es/pro/cloud-empresarial/">
+                <strong class="sub-title">Cloud Empresarial</strong>
+                <p> Cloud IaaS altamente escalable y configurable de manera individual</p>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="col-sm-3">
+    <strong class="sub-head">
+        <a href="https://www.ionos.es/digitalguide/">
+            Herramientas
+
+        </a>
+    </strong>
+    <ul class="sub-menu-list list-unstyled">
+        <li>
+            <a href="https://www.ionos.es/tools/analisis-web">
+                <strong class="sub-title">Análisis Web</strong>
+                <p> Análisis del rendimiento de tu página web</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/tools/analisis-seo">
+                <strong class="sub-title">Análisis SEO</strong>
+                <p> Comprueba gratis si tu sitio web está optimizada</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/tools/crear-favicon">
+                <strong class="sub-title">Crear favicon</strong>
+                <p> Crea tu favicon gratis en linea</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/tools/crear-logo">
+                <strong class="sub-title">Crear logo</strong>
+                <p> Generador de logos para tu negocio</p>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.ionos.es/tools/direccion-ip">
+                <strong class="sub-title">¿Cual es mi IP?</strong>
+                <p> Descubre tu direccion IP gratis </p>
+            </a>
+        </li>
+    </ul>
+</div>
+										</div>
+									</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main id="main">
+		<script type="application/ld+json">{ "@context": "http://schema.org","@type": "BreadcrumbList", "itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/www.ionos.de","name":"IONOS"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/www.ionos.de\/digitalguide","name":"Consejero"}},{"@type":"ListItem","position":3,"item":{"@id":"servidores\/","name":"Servidores"}},{"@type":"ListItem","position":4,"item":{"@id":"servidores\/configuracion\/","name":"Configuraci\u00f3n"}},{"@type":"ListItem","position":5,"item":{"@id":"servidores\/configuracion\/nginx-tutorial-primeros-pasos-con-nginxconf\/","name":"nginx tutorial: primeros pasos con nginx.conf"}}]}</script>
+		
+	<nav class="breadcrumbs"> <div class="container"> <ol class="list-inline"><li><a href="https://www.ionos.es/" title="1&amp;1 IONOS" itemprop="item">1&amp;1 IONOS</a></li><li><a href="https://www.ionos.es/digitalguide/" title="Digitalguide" itemprop="item"><span itemprop="name">Digitalguide</span></a></li><li><a href="https://www.ionos.es/digitalguide/servidores/" title="Servidores" itemprop="item"><span itemprop="name">Servidores</span></a></li><li><a href="https://www.ionos.es/digitalguide/servidores/configuracion/" title="Configuración" itemprop="item"><span itemprop="name">Configuración</span></a></li><li><a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" title="nginx tutorial: primeros pasos con nginx.conf" itemprop="item"><span itemprop="name">nginx tutorial: primeros pasos con nginx.conf</span></a></li></ol></div></nav>
+
+
+		<div class="main-container">
+			<div class="container meta-holder">
+				<div class="row">
+					<div class="col-sm-8">
+							
+<div class="article-meta">
+    <ul class="list-inline meta">
+        <li>
+            <time datetime=" 2017-07-17"><span class="icon-clock-o"></span>  17.07.17</time>
+        </li>
+        <li><a href="https://www.ionos.es/digitalguide/servidores/configuracion/">Configuración</a>
+        </li>
+    </ul>
+    <ul class="list-inline list-info">
+        <li>
+            
+                    
+
+    
+            
+<div class="star-rating">
+
+    <div class="star-rating__text">
+
+        <span class="text-info" data-role="ratingsWording" data-default="¿Te ha gustado el artículo?" data-thanks="Muchas gracias por tu valoración">
+            ¿Te ha gustado el artículo?
+        </span>
+
+        <span class="star-rating__average" title="Nota promedio" data-role="ratingsAverage" style="">4</span>
+
+    </div>
+
+    <div class="star-rating__wrap">
+        <input class="star-rating__input" id="star-rating-5" type="radio" name="ratingtop" value="5" data-role="ratingStarInput5">
+        <label class="star-rating__ico" for="star-rating-5" data-role="star" data-amount="5">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-4" type="radio" name="ratingtop" value="4" data-role="ratingStarInput4">
+        <label class="star-rating__ico" for="star-rating-4" data-role="star" data-amount="4">
+                    <span class="fa fa-stack fa-lg">
+                    <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-3" type="radio" name="ratingtop" value="3" data-role="ratingStarInput3">
+        <label class="star-rating__ico" for="star-rating-3" data-role="star" data-amount="3">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-2" type="radio" name="ratingtop" value="2" data-role="ratingStarInput2">
+        <label class="star-rating__ico" for="star-rating-2" data-role="star" data-amount="2">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-1" type="radio" name="ratingtop" value="1" data-role="ratingStarInput1">
+        <label class="star-rating__ico" for="star-rating-1" data-role="star" data-amount="1">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+    </div>
+
+    <div class="star-rating__amount" data-role="ratingTotalAmount" title="Total de reseñas">2</div>
+
+    <div class="clearfix"></div>
+</div>
+
+            
+                <script type="application/ld+json">
+                {
+    "@context": "http://schema.org/",
+    "@type": "Article",
+    "headline": "nginx tutorial: primeros pasos con nginx.conf",
+    "description": "\u00bfReload o restart nginx? En nuestro tutorial encontrar\u00e1s toda la informaci\u00f3n para configurar un proxy nginx y hacer cambios en el archivo de configuraci\u00f3n.",
+    "datePublished": "2017-07-17",
+    "dateModified": "2018-10-22",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "url": "https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.ionos.es/digitalguide/fileadmin/DigitalGuide/Teaser/nginx-t.jpg",
+        "width": 1200,
+        "height": 630
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "1und1 Internet SE",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ionos.de/digitalguide/fileadmin/DigitalGuide/Logos/1_1_Logo.jpg"
+        }
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "1und1 Internet SE",
+        "url": "http://www.ionos.de/digitalguide/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ionos.de/digitalguide/fileadmin/DigitalGuide/Logos/1_1_Logo.jpg"
+        }
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "worstRating": 1,
+        "bestRating": 5,
+        "ratingCount": 2,
+        "ratingValue": 4
+    }
+}
+                </script>
+            
+        
+
+
+                
+
+        </li> 
+        <li>
+            <ul class="list-inline social-networks">
+                <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" class="facebook"><span class="icon-facebook"></span></a></li>
+                
+                            <li><a target="_blank" href="https://twitter.com/intent/tweet?source=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/&amp;text=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/%20%23DigitalGuide" class="twitter"><span class="icon-twitter"></span></a></li>
+                    
+               <li><a target="_blank" href="https://www.xing.com/spi/shares/new?url=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" class="xing"><span class="icon-xing"></span></a></li>
+                <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" class="linkedin"><span class="icon-linkedin"></span></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+					</div>
+				</div>
+			</div>
+			
+
+
+
+
+
+			<div class="container two-columns 	">
+				<div class="row">
+					<!--TYPO3SEARCH_begin-->
+					<div class="col-sm-8" id="content">
+						<div class="content-block">
+
+						
+
+
+    
+     <div class="aligncenter visual-img hidden-xs">
+        
+
+        <picture>
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="fileadmin/_processed_/1/6/csm_nginx-t_4c93074915.jpg" media="(max-width: 767px)">
+            <source srcset="fileadmin/_processed_/1/6/csm_nginx-t_6041acb145.jpg" media="(max-width: 1023px)">
+            <source srcset="fileadmin/DigitalGuide/Teaser/nginx-t.jpg">
+            <!--[if IE 9]></video><![endif]-->
+            <img src="./ngix-ionos_files/nginx-t.jpg" alt="nginx tutorial: primeros pasos con nginx.conf" title="nginx tutorial: primeros pasos con nginx.conf">
+        </picture>
+    
+     </div>
+    
+
+
+						
+						
+<div id="c66549">
+	
+		
+
+	
+		
+				
+			
+
+		
+
+		<h1 class="blue">nginx tutorial: comandos y configuraciones básicas</h1>
+	
+
+
+		
+
+		
+
+
+
+
+		
+				
+			
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66550">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>En nuestro artículo “<a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/" title="nginx: conceptos básicos, instalación y configuración" class="internal-link">nginx, el servidor web rápido y sostenible</a>” resumíamos el proceso de instalación en el sistema y las características básicas de nginx. En el siguiente tutorial ofrecemos un resumen de los comandos básicos y opciones de configuración de este moderno servidor web.&nbsp;</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66551" class="frame frame-default frame-type-list frame-layout-0"><div class="tx-toc"><div id="toc" class="toc content-table smoothscroll 
+         numbers 
+          
+          
+         
+         togglestyle"><div id="toctitle" class="opener"><strong class="h3">Índice</strong><span class="toctoggle"><a href="https://www.ionos.es/digitalguide/#" id="togglelinkStyle"></a></span></div><ol class="ordered-list list-content toclist hierarchy"><li class="toclevel-2"><a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/#c66552"><span class="toctext" data-slug="la-unidad-central-de-control-nginx-conf">La unidad central de control: nginx.conf</span></a></li><li class="toclevel-2"><a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/#c66553"><span class="toctext" data-slug="gestionar-procesos-y-adoptar-nuevas-configuraciones">Gestionar procesos y adoptar nuevas configuraciones</span></a></li><li class="toclevel-2"><a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/#c66563"><span class="toctext" data-slug="como-controlar-la-entrega-de-contenido-estatico">Cómo controlar la entrega de contenido estático</span></a></li><li class="toclevel-2"><a href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/#c66568"><span class="toctext" data-slug="configuracion-de-un-servidor-proxy-nginx-simple">Configuración de un servidor proxy nginx simple</span></a></li></ol></div></div></div>
+
+
+<div id="c66552">
+	
+		
+
+	
+		
+				
+			
+
+		
+
+		
+			
+
+		<h2 class="blue">La unidad central de control: nginx.conf</h2>
+	
+
+		
+	
+
+
+		
+
+		
+
+
+
+
+		
+				
+			
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>A diferencia de Apache, nginx no se basa en procesos, sino en eventos. Las solicitudes individuales se clasifican como eventos y no como nuevos procesos de trabajo para los que es necesario cargar todos los módulos. <strong>Estos eventos son distribuidos en los procesos existentes, </strong>que son mantenidos en funcionamiento por el proceso principal. La cantidad de procesos existentes y la manera en la que se dividen las solicitudes del servidor (es decir, los eventos) se definen en el archivo de configuración <em>nginx.conf. </em>Por defecto, este archivo lo puedes encontrar en los directorios <em>/usr/local/nginx/conf</em>, <em>/etc/nginx</em> o <em>/usr/local/etc/nginx.</em></p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66553">
+	
+		
+
+	
+		
+				
+			
+
+		
+
+		
+			
+
+		<h2 class="blue">Gestionar procesos y adoptar nuevas configuraciones</h2>
+	
+
+		
+	
+
+
+		
+
+		
+
+
+
+
+		
+				
+			
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Una vez finalizada la instalación, nginx se iniciará automáticamente –aunque también se puede iniciar manualmente utilizando el siguiente comando:</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66554" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb1 .line:before{ width: 8px; }pre code.rainbow.rb1 .line:after{ width:172px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb1"><span id="rb1ln1" class="line" data-line="1"></span>sudo service nginx start</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66555">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Cuando el software se ha puesto en marcha, los procesos (sobre todo el proceso principal) se controlan con el parámetro –s y una señal (signal) específica. La sintaxis del comando correspondiente es tan sencilla como:</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66556" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb2 .line:before{ width: 8px; }pre code.rainbow.rb2 .line:after{ width:143px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb2"><span id="rb2ln1" class="line" data-line="1"></span>sudo nginx -s signal</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66557">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Como “señal” tienes las siguientes cuatro opciones:</p><ul><li><strong>stop</strong>: finaliza nginx inmediatamente.</li></ul><ul><li><strong>quit</strong>: nginx se termina después de que todas las solicitudes activas han sido contestadas.</li></ul><ul><li><strong>reload: </strong>el archivo de configuración se vuelve a cargar.</li></ul><ul><li><strong>reopen: </strong>se reinician los archivos de registro.</li></ul><p> La opción reload con la que se vuelve a cargar el archivo de configuración es una manera práctica de aplicar cambios al mismo sin tener que finalizar y reiniciar el servidor. En cualquier caso, y para para que el sistema acepte y guarde los cambios, es necesario decidirse por <strong>una variante que reinicie el servidor por completo o por una que realice únicamente el </strong><strong>nginx reload</strong>. Si quieres elegir la opción más elegante, es decir la segunda, y ejecutar el comando, el proceso principal recibe una indicación para aplicar los cambios en el archivo <em>nginx.conf:</em></p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66558" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb3 .line:before{ width: 8px; }pre code.rainbow.rb3 .line:after{ width:143px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb3"><span id="rb3ln1" class="line" data-line="1"></span>sudo nginx -s reload</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66559">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Para este propósito el primer paso es verificar la sintaxis. En caso de que esta sea correcta, el proceso principal inicia otros procesos de trabajo con la nueva configuración y, simultáneamente, detiene los procesos antiguos. Si <strong>la comprobación de la sintaxis</strong> falla, la configuración previa se mantiene. Todos los procesos activos se terminan tan pronto como se han procesado todas las solicitudes activas.&nbsp;
+</p>
+<p>Recuerda que también es posible abordar procesos de nginx directamente utilizando herramientas como kill. Todo lo que necesitas es el ID del proceso que encontrarás en el archivo <em>nginx.pid</em> en el directorio <em>/usr/local/nginx/logs, </em>o alternativamente en <em>/var/run. </em>Así, si el proceso tiene, por ejemplo, el ID 1628, puede ser finalizado en el ciclo suave con la señal <em>quit </em>y con kill:&nbsp;</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66560" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb4 .line:before{ width: 8px; }pre code.rainbow.rb4 .line:after{ width:158px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb4"><span id="rb4ln1" class="line" data-line="1"></span>sudo kill -s quit 1628</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66561">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>El programa de utilidad ps te presenta una lista con todos los procesos nginx que se están ejecutando:</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66562" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb5 .line:before{ width: 8px; }pre code.rainbow.rb5 .line:after{ width:172px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb5"><span id="rb5ln1" class="line" data-line="1"></span>sudo ps -ax | grep nginx</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66563">
+	
+		
+
+	
+		
+				
+			
+
+		
+
+		
+			
+
+		<h2 class="blue">Cómo controlar la entrega de contenido estático</h2>
+	
+
+		
+	
+
+
+		
+
+		
+
+
+
+
+		
+				
+			
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Es muy probable que utilices tu servidor web para suministrar contenido como imágenes, vídeos o contenido HTML estático. Por razones de eficiencia, es recomendable seleccionar <strong>varios directorios locales para los diferentes tipos de contenido</strong>, tal como ejemplificaremos a continuación.
+</p>
+<p>Comienza creando el directorio <em>/data/html </em>y, en él, el documento HTML <em>index.html </em>y la carpeta <em>/data/fotos, </em>junto con algunas imágenes de muestra.<em>&nbsp;&nbsp;</em>
+</p>
+<p>En el siguiente paso los dos directorios deben ser movidos al archivo de configuración, manteniéndolos en la directiva bloque-servidor, que es a su vez, una subdirectiva de la directiva del bloque-HTTP. Por defecto, allí encontrarás algunas instrucciones que han sido previamente registradas pero que puedes desactivar en cualquier momento (off). A continuación, solo necesitas añadir una instrucción adicional al bloque-Servidor:&nbsp;</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66564" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb6 .line:before{ width: 8px; }pre code.rainbow.rb6 .line:after{ width:72px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb6"><span id="rb6ln1" class="line" data-line="1"></span>http {
+<span id="rb6ln2" class="line" data-line="2"></span>  server {
+<span id="rb6ln3" class="line" data-line="3"></span>  }
+<span id="rb6ln4" class="line" data-line="4"></span>}</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66565">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Ahora, ambos directorios (uno con fotos y otro con el documento HTML) deben aparecer en el bloque-Servidor. El resultado correspondiente se verá de la siguiente manera:</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66566" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb7 .line:before{ width: 8px; }pre code.rainbow.rb7 .line:after{ width:150px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb7"><span id="rb7ln1" class="line" data-line="1"></span>server {
+<span id="rb7ln2" class="line" data-line="2"></span>  location / {
+<span id="rb7ln3" class="line" data-line="3"></span>    root /data/html;
+<span id="rb7ln4" class="line" data-line="4"></span>  }
+<span id="rb7ln5" class="line" data-line="5"></span>
+<span id="rb7ln6" class="line" data-line="6"></span>  location /bilder/ {
+<span id="rb7ln7" class="line" data-line="7"></span>    root /data;
+<span id="rb7ln8" class="line" data-line="8"></span>  }
+<span id="rb7ln9" class="line" data-line="9"></span>}</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66567">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>Esta configuración es, por defecto, un ajuste estándar de un servidor que se escucha en el puerto 80 y es accesible a través del host local. Todas las solicitudes cuyas <strong>URI</strong> (Identificador de recursos uniforme) comienzan con /<em>fotos</em>/ solicitarán datos del directorio <em>/data/fotos</em>. Si el archivo correspondiente no existe, aparecerá el mensaje de error. Todos los eventos nginx cuyas URI no empiezan con /<em>fotos</em>/ se remiten al directorio <em>/data/html.</em>&nbsp;
+</p>
+<p>Recuerda que debes cargar de nuevo o reiniciar nginx para aplicar los cambios.</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66568">
+	
+		
+
+	
+		
+				
+			
+
+		
+
+		
+			
+
+		<h2 class="blue">Configuración de un servidor proxy nginx simple</h2>
+	
+
+		
+	
+
+
+		
+
+		
+
+
+
+
+		
+				
+			
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>A menudo, nginx es utilizado para dirigir un <a href="https://www.ionos.es/digitalguide/servidores/know-how/que-es-un-servidor-proxy/" class="internal-link">servidor proxy</a> que, reemplazando al servidor real, es el encargado de recibir las peticiones entrantes, de filtrarlas bajo determinados criterios y de entregar las respectivas respuestas a los clientes. Los <strong>servidores proxy caché</strong> son especialmente populares, pues entregan el contenido estático almacenado directamente y solo transmiten peticiones entrantes al servidor. Los <strong>cortafuegos proxy</strong> que filtran conexiones inseguras o indeseadas también son muy conocidos. A continuación ejemplificamos el anteriormente mencionado proxy caché, quien debe reproducir las imágenes solicitadas desde el directorio local y reenviar todas las solicitudes al servidor web.
+</p>
+<p> El primer fragmento define el servidor principal en <em>nginx.conf:</em>&nbsp;</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66569" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb8 .line:before{ width: 8px; }pre code.rainbow.rb8 .line:after{ width:122px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb8"><span id="rb8ln1" class="line" data-line="1"></span>server {
+<span id="rb8ln2" class="line" data-line="2"></span>  listen 8080;
+<span id="rb8ln3" class="line" data-line="3"></span>  root /data/up1;
+<span id="rb8ln4" class="line" data-line="4"></span>
+<span id="rb8ln5" class="line" data-line="5"></span>  location / {
+<span id="rb8ln6" class="line" data-line="6"></span>  }
+<span id="rb8ln7" class="line" data-line="7"></span>}</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66570">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>A diferencia del ejemplo anterior, utiliza <strong>la directiva Listen</strong>, pues el puerto que se debe utilizar para las solicitudes entrantes es 8080 y no el puerto predeterminado. Establece <em>/data/up1 </em>como directorio de destino y coloca allí la página <em>index.html. </em>&nbsp;
+</p>
+<p> Posteriormente, utilizando la directiva ProxyPass, define el servidor proxy y su función para <strong>entregar contenido de la imagen,</strong> incluyendo informaciones sobre el servidor principal (Protocolo (<em>http</em>), Nombre (<em>localhost</em>) y Puerto (<em>8080</em>):</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+<div id="c66571" class="frame frame-default frame-type-fs_code_snippet frame-layout-0"><style>pre code.rainbow.rb9 .line:before{ width: 8px; }pre code.rainbow.rb9 .line:after{ width:265px }</style><pre class="line-numbers language-mixed code-toolbar" data-language="mixed" data-trimmed="true"><code class="rainbow language-mixed rb9"><span id="rb9ln1" class="line" data-line="1"></span>server {
+<span id="rb9ln2" class="line" data-line="2"></span>  location / {
+<span id="rb9ln3" class="line" data-line="3"></span>    proxy_pass http://localhost:8080;
+<span id="rb9ln4" class="line" data-line="4"></span>  }
+<span id="rb9ln5" class="line" data-line="5"></span>
+<span id="rb9ln6" class="line" data-line="6"></span>  location ~ \.(gif|jpg|png) $ {
+<span id="rb9ln7" class="line" data-line="7"></span>    root /data/bilder;
+<span id="rb9ln8" class="line" data-line="8"></span>  }
+<span id="rb9ln9" class="line" data-line="9"></span>}</code><div class="preloader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class="toolbar"><div class="toolbar-item"><span>mixed</span></div></div></pre></div>
+
+
+<div id="c66572">
+	
+		
+
+	
+
+
+	
+	<div class="text-row ce-textpic ce-right ce-intext">
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		<div class="ce-bodytext">
+			
+			<p>El segundo <strong>bloque Location</strong> designa al servidor proxy la tarea de responder por sí mismo a todas las solicitudes cuyas URI tengan terminaciones típicas como .<em>gif</em>, .<em>jpg</em> y .<em>png</em>, mientras que el contenido correspondiente es recuperado desde el directorio <em>/data/fotos.</em> Las demás solicitudes son enviadas al servidor principal. Al igual que con la configuración anterior, guarda las imágenes proxy con la señal <em>reload </em>en el proceso principal o por medio de restart nginx. Si quieres conocer otras directrices para gestionar configuraciones del proxy más complejas, consulta el manual en inglés en la <a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html" title="todas las directivas proxy disponibles en nginx.org" target="_blank" class="external-link-new-window">página web oficial de nginx</a>.</p>
+		</div>
+
+		
+	</div>
+
+	
+
+
+</div>
+
+
+
+						
+<div class="article-meta">
+    <ul class="list-inline meta">
+        <li>
+            <time datetime=" 2017-07-17"><span class="icon-clock-o"></span>  17.07.17</time>
+        </li>
+        <li><a href="https://www.ionos.es/digitalguide/servidores/configuracion/">Configuración</a>
+        </li>
+    </ul>
+    <ul class="list-inline list-info">
+        <li>
+            
+                    
+
+    
+            
+<div class="star-rating">
+
+    <div class="star-rating__text">
+
+        <span class="text-info" data-role="ratingsWording" data-default="¿Te ha gustado el artículo?" data-thanks="Muchas gracias por tu valoración">
+            ¿Te ha gustado el artículo?
+        </span>
+
+        <span class="star-rating__average" title="Nota promedio" data-role="ratingsAverage" style="">4</span>
+
+    </div>
+
+    <div class="star-rating__wrap">
+        <input class="star-rating__input" id="star-rating-5" type="radio" name="ratingbottom" value="5" data-role="ratingStarInput5">
+        <label class="star-rating__ico" for="star-rating-5" data-role="star" data-amount="5">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-4" type="radio" name="ratingbottom" value="4" data-role="ratingStarInput4">
+        <label class="star-rating__ico" for="star-rating-4" data-role="star" data-amount="4">
+                    <span class="fa fa-stack fa-lg">
+                    <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-3" type="radio" name="ratingbottom" value="3" data-role="ratingStarInput3">
+        <label class="star-rating__ico" for="star-rating-3" data-role="star" data-amount="3">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-2" type="radio" name="ratingbottom" value="2" data-role="ratingStarInput2">
+        <label class="star-rating__ico" for="star-rating-2" data-role="star" data-amount="2">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+        <input class="star-rating__input" id="star-rating-1" type="radio" name="ratingbottom" value="1" data-role="ratingStarInput1">
+        <label class="star-rating__ico" for="star-rating-1" data-role="star" data-amount="1">
+                    <span class="fa fa-stack fa-lg">
+                        <i class="fa fa-star fa-stack-1x"></i>
+                        <i class="fa fa-star-o fa-stack-1x"></i>
+                    </span>
+        </label>
+    </div>
+
+    <div class="star-rating__amount" data-role="ratingTotalAmount" title="Total de reseñas">2</div>
+
+    <div class="clearfix"></div>
+</div>
+
+        
+
+
+                
+
+        </li> 
+        <li>
+            <ul class="list-inline social-networks">
+                <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" class="facebook"><span class="icon-facebook"></span></a></li>
+                
+                            <li><a target="_blank" href="https://twitter.com/intent/tweet?source=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/&amp;text=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/%20%23DigitalGuide" class="twitter"><span class="icon-twitter"></span></a></li>
+                    
+               <li><a target="_blank" href="https://www.xing.com/spi/shares/new?url=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" class="xing"><span class="icon-xing"></span></a></li>
+                <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-tutorial-primeros-pasos-con-nginxconf/" class="linkedin"><span class="icon-linkedin"></span></a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+					
+						
+        <ul class="metatags-list list-inline list-unstyled">
+            
+                <li><a title="Tutoriales" href="https://www.ionos.es/digitalguide/tags/tutoriales/">Tutoriales</a></li>
+            
+                <li><a title="Herramientas" href="https://www.ionos.es/digitalguide/tags/herramientas/">Herramientas</a></li>
+            
+        </ul>
+    
+						</div>
+						
+							
+								<div class="gcsOptin" data-gcs-optin-opts="{&quot;text&quot;:{&quot;headline&quot;:&quot;NEWSLETTER&quot;,&quot;subheadline&quot;:&quot;Jetzt Newsletter abonnieren und kostenloses Whitepaper „Online-Marketing für lokale Anbieter“ sichern!  &quot;},&quot;id&quot;:&quot;447c180c9d9d6e25d3e68059482a18400e739114335e033b625cf38a3e0c9fc3&quot;,&quot;host&quot;:&quot;1u1.newsletter.global-communication.de&quot;,&quot;https&quot;:true,&quot;skipKnownUser&quot;:true,&quot;callback&quot;:&quot;&quot;}"></div>
+							
+						
+
+						
+
+						
+
+		<section class="container related-articles">
+			<strong class="h3 text-center">Artículos similares</strong>
+			<div class="row post-holder">
+				
+					<div class="col-sm-4">
+						<article class="info-post">
+    <div class="img-holder">
+        <a title="nginx: conceptos básicos, instalación y configuración" href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/">
+                
+            
+               
+                
+
+        <picture>
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="fileadmin/_processed_/1/6/csm_nginx-t_4c93074915.jpg" media="(max-width: 767px)">
+            <source srcset="fileadmin/_processed_/1/6/csm_nginx-t_6041acb145.jpg" media="(max-width: 1023px)">
+            <source srcset="fileadmin/DigitalGuide/Teaser/nginx-t.jpg">
+            <!--[if IE 9]></video><![endif]-->
+            <img src="./ngix-ionos_files/nginx-t.jpg" alt="nginx: conceptos básicos, instalación y configuración" title="nginx: conceptos básicos, instalación y configuración">
+        </picture>
+    
+            
+        </a>
+    </div>
+    <h2 class="blue">
+        
+                <a title="nginx: el servidor web rápido y sostenible" href="https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/">nginx: el servidor web rápido y sostenible</a>
+            
+    </h2>
+    <ul class="list-inline meta">
+        <li><time datetime="2016-10-19"><span class="icon-clock-o"></span> 19.10.2016</time></li>
+        <li><a href="https://www.ionos.es/digitalguide/servidores/configuracion/">Configuración</a></li>
+    </ul>
+    <p>
+        Por muchos años, Apache fue la solución de servidor web por excelencia y la base de la mayoría de páginas web en la World Wide Web. Sin embargo, el aumento de los requisitos técnicos de modernos y ambiciosos proyectos online y las crecientes demandas de los usuarios de Internet han cambiado radicalmente esta situación. Es por esto que alternativas como nginx han ido ganando popularidad y se han...
+    </p>
+     
+    <div class="social-block">
+        <ul class="list-inline social-networks">
+            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/" class="facebook"><span class="icon-facebook"></span></a></li>
+            
+                    <li><a target="_blank" href="https://twitter.com/intent/tweet?source=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/&amp;text=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/%20%23DigitalGuide" class="twitter"><span class="icon-twitter"></span></a></li>
+                
+            <li><a target="_blank" href="https://www.xing.com/spi/shares/new?url=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/" class="xing"><span class="icon-xing"></span></a></li>
+            <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ionos.es/digitalguide/servidores/configuracion/nginx-conceptos-basicos-instalacion-y-configuracion/" class="linkedin"><span class="icon-linkedin"></span></a></li>
+        </ul>
+    </div>
+
+</article>
+					</div>
+				
+					<div class="col-sm-4">
+						<article class="info-post">
+    <div class="img-holder">
+        <a title="Servidor web: definición, historia y programas" href="https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/">
+                
+            
+               
+                
+
+        <picture>
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="fileadmin/_processed_/4/8/csm_san-storage-t_7269ac9bf7.jpg" media="(max-width: 767px)">
+            <source srcset="fileadmin/_processed_/4/8/csm_san-storage-t_1dbaf3d2b1.jpg" media="(max-width: 1023px)">
+            <source srcset="fileadmin/DigitalGuide/Teaser/san-storage-t.jpg">
+            <!--[if IE 9]></video><![endif]-->
+            <img src="./ngix-ionos_files/san-storage-t.jpg" alt="Servidor web: definición, historia y programas" title="Servidor web: definición, historia y programas">
+        </picture>
+    
+            
+        </a>
+    </div>
+    <h2 class="blue">
+        
+                <a title="¿Qué es un servidor web y qué soluciones de software existen?" href="https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/">¿Qué es un servidor web y qué soluciones de software existen?</a>
+            
+    </h2>
+    <ul class="list-inline meta">
+        <li><time datetime="2016-10-25"><span class="icon-clock-o"></span> 25.10.2016</time></li>
+        <li><a href="https://www.ionos.es/digitalguide/servidores/know-how/">Know How</a></li>
+    </ul>
+    <p>
+        Los servidores web son los responsables de la aparición de las páginas web en Internet. El principio es muy simple: sin servidores web no existirían los contenidos web. Si el servidor web está fuera de servicio, no se puede acceder a las webs alojadas en él. Ahora bien ¿qué es un servidor web y cómo funciona en detalle? ¿Cuáles son las principales características de las soluciones de software de...
+    </p>
+     
+    <div class="social-block">
+        <ul class="list-inline social-networks">
+            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/" class="facebook"><span class="icon-facebook"></span></a></li>
+            
+                    <li><a target="_blank" href="https://twitter.com/intent/tweet?source=https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/&amp;text=https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/%20%23DigitalGuide" class="twitter"><span class="icon-twitter"></span></a></li>
+                
+            <li><a target="_blank" href="https://www.xing.com/spi/shares/new?url=https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/" class="xing"><span class="icon-xing"></span></a></li>
+            <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ionos.es/digitalguide/servidores/know-how/servidor-web-definicion-historia-y-programas/" class="linkedin"><span class="icon-linkedin"></span></a></li>
+        </ul>
+    </div>
+
+</article>
+					</div>
+				
+					<div class="col-sm-4">
+						<article class="info-post">
+    <div class="img-holder">
+        <a title="Apache vs. nginx | Una comparativa de servidores web" href="https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/">
+                
+            
+               
+                
+
+        <picture>
+            <!--[if IE 9]><video style="display: none;"><![endif]-->
+            <source srcset="fileadmin/_processed_/9/6/csm_server-vergleich-t_b0aab8f0d7.jpg" media="(max-width: 767px)">
+            <source srcset="fileadmin/_processed_/9/6/csm_server-vergleich-t_1939c4b11b.jpg" media="(max-width: 1023px)">
+            <source srcset="fileadmin/DigitalGuide/Teaser/server-vergleich-t.jpg">
+            <!--[if IE 9]></video><![endif]-->
+            <img src="./ngix-ionos_files/server-vergleich-t.jpg" alt="Apache vs. nginx | Una comparativa de servidores web" title="Apache vs. nginx | Una comparativa de servidores web">
+        </picture>
+    
+            
+        </a>
+    </div>
+    <h2 class="blue">
+        
+                <a title="Apache vs. nginx: los mejores servidores web open source" href="https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/">Apache vs. nginx: los mejores servidores web open source</a>
+            
+    </h2>
+    <ul class="list-inline meta">
+        <li><time datetime="2017-12-19"><span class="icon-clock-o"></span> 19.12.2017</time></li>
+        <li><a href="https://www.ionos.es/digitalguide/servidores/know-how/">Know How</a></li>
+    </ul>
+    <p>
+        Apache vs. nginx: mientras que uno destaca por su lentitud, el otro se considera ligero y potente, pero ¿se puede hablar de un modo general? En realidad, ambos servidores web se basan en conceptos diferentes en términos de gestión de conexiones, de interpretación de las solicitudes de los clientes o de posibilidades de configuración. Asimismo, el espectro de funciones muestra diferencias notables...
+    </p>
+     
+    <div class="social-block">
+        <ul class="list-inline social-networks">
+            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/" class="facebook"><span class="icon-facebook"></span></a></li>
+            
+                    <li><a target="_blank" href="https://twitter.com/intent/tweet?source=https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/&amp;text=https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/%20%23DigitalGuide" class="twitter"><span class="icon-twitter"></span></a></li>
+                
+            <li><a target="_blank" href="https://www.xing.com/spi/shares/new?url=https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/" class="xing"><span class="icon-xing"></span></a></li>
+            <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.ionos.es/digitalguide/servidores/know-how/apache-vs-nginx-una-comparativa-de-servidores-web/" class="linkedin"><span class="icon-linkedin"></span></a></li>
+        </ul>
+    </div>
+
+</article>
+					</div>
+				
+			</div>
+		</section>
+	
+						<div class="category-description">
+							
+							
+							
+							
+							
+							
+						</div>
+					</div>
+
+					<!--TYPO3SEARCH_end-->
+
+					<div class="col-sm-4" id="sidebar">
+						<div class="gcsOptin" data-gcs-optin-opts="{&quot;text&quot;:{&quot;headline&quot;:&quot;NEWSLETTER&quot;,&quot;subheadline&quot;:&quot;anmelden und gratis Online-Marketing Whitepaper sichern.&quot;},&quot;id&quot;:&quot;7ccf889c34fccd13c4832d521089fa029f34e139a885c62a0bde339604ee7a6a&quot;,&quot;host&quot;:&quot;digitalguide.1und1.de&quot;,&quot;https&quot;:true,&quot;skipKnownUser&quot;:true,&quot;callback&quot;:&quot;&quot;}"></div>
+						
+        <div class="side-block open-close">
+            <h3 class="opener" data-responsive-accordion="1023">
+                Artículos Favoritos
+                <span class="iconCloseOpen "></span>
+            </h3>
+            <div class="container-info-blog slide js-slide-hidden">
+                
+                    <div class="info-blog">
+                        
+                        
+                                <h4 class="h5 blue">
+                                    <a title="Cómo crear capturas de pantalla en Windows" href="https://www.ionos.es/digitalguide/servidores/configuracion/como-crear-capturas-de-pantalla-en-windows/">Cómo crear capturas de pantalla en Windows
+                                        <p class="shabstract">¿Cómo se hacen realmente la capturas de pantalla en Windows? ...</p>
+                                    </a>
+                                </h4>
+                            
+                    </div>
+                
+                    <div class="info-blog">
+                        
+                        
+                                <h4 class="h5 blue">
+                                    <a title="Alternativas a Outlook: gratuitas y para toda necesidad" href="https://www.ionos.es/digitalguide/correo-electronico/cuestiones-tecnicas/alternativas-a-outlook-gratuitas-y-para-toda-necesidad/">Alternativas a Outlook: gratuitas y para toda necesidad
+                                        <p class="shabstract">Outlook suele ser la opción más usada. Pero, ¿sabías que existen varias alternativas?...</p>
+                                    </a>
+                                </h4>
+                            
+                    </div>
+                
+                    <div class="info-blog">
+                        
+                        
+                                <h4 class="h5 blue">
+                                    <a title="Outlook no se abre" href="https://www.ionos.es/digitalguide/correo-electronico/cuestiones-tecnicas/outlook-no-se-abre/">Outlook no se abre
+                                        <p class="shabstract">Esta guía te ayudará a poner en marcha tu correo electrónico...</p>
+                                    </a>
+                                </h4>
+                            
+                    </div>
+                
+                    <div class="info-blog">
+                        
+                        
+                                <h4 class="h5 blue">
+                                    <a title="Aprende a compartir el calendario de Outlook" href="https://www.ionos.es/digitalguide/correo-electronico/cuestiones-tecnicas/aprende-a-compartir-el-calendario-de-outlook/">Aprende a compartir el calendario de Outlook
+                                        <p class="shabstract">¿Quieres saber cómo compartir el calendario de Outlook?...</p>
+                                    </a>
+                                </h4>
+                            
+                    </div>
+                
+                    <div class="info-blog">
+                        
+                        
+                                <h4 class="h5 blue">
+                                    <a title="Cómo configurar la respuesta automática de Outlook" href="https://www.ionos.es/digitalguide/correo-electronico/cuestiones-tecnicas/como-configurar-la-respuesta-automatica-de-outlook/">Cómo configurar la respuesta automática de Outlook
+                                        <p class="shabstract">La respuesta automática es muy fácil de crear, aquí te enseñamos cómo...</p>
+                                    </a>
+                                </h4>
+                            
+                    </div>
+                
+            </div>
+        </div>
+    
+						
+					</div>
+				</div>
+			</div>
+			<div class="mobile-box"></div>
+			<div class="container info-aside">
+				
+		<nav class="tag-cloud active">
+		<h3 class="opener">Otros temas<span class="iconCloseOpen"></span></h3>
+		<ul class="list-inline tag-list slide" style="">
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/aplicaciones/">Aplicaciones</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/base-de-datos/">Base de Datos</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/cifrado/">Cifrado</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/codigo-abierto/">Código Abierto</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/dns/">DNS</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/ftp/">FTP</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/glosario/">Glosario</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/http/">HTTP</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/herramientas/">Herramientas</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/linux/">Linux</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/navegador/">Navegador</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/proteccion-de-datos/">Protección de Datos</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/protocolos/">Protocolos</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/red/">Red</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/seguridad/">Seguridad</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/sistemas-operativos/">Sistemas Operativos</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/sistemas-de-almacenamiento/">Sistemas de Almacenamiento</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/tiempo-de-carga/">Tiempo de Carga</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/tutoriales/">Tutoriales</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/windows/">Windows</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/wordpress/">Wordpress</a>
+				</li>
+			
+				<li><a href="https://www.ionos.es/digitalguide/tags/youtube/">YouTube</a>
+				</li>
+			
+		</ul>
+		</nav>
+	
+			</div>
+		</div>
+	</main>
+
+<footer id="footer">
+	<div class="container footer-frame">
+		<ul class="list-inline social-networks contact">
+			
+				<li><a href="http://ionos.ly/IONOS_FB_ES" class="facebook" target="_blank"><span class="icon-facebook"></span></a></li>
+			
+			
+				<li><a href="http://ionos.ly/IONOS_TW_ES" class="twitter" target="_blank"><span class="icon-twitter"></span></a></li>
+			
+			
+			
+				<li><a href="http://ionos.ly/IONOS_YT_ES" class="youtube" target="_blank"><img src="./ngix-ionos_files/youtube.png" width="28" height="28" alt="youtube"></a></li>
+			
+			
+				<li><a href="http://ionos.ly/IONOS_IN" class="linkedin" target="_blank"><span class="icon-linkedin"></span></a></li>
+			
+			
+		</ul>
+	</div>
+
+	<div class="footer-holder">
+		<div class="container">
+			<ul class="list-inline list-footer"><li class="footer-nav-item"><a href="https://www.ionos.es/empresa" class="footer-nav-link" target="_blank">Empresa</a></li><li class="footer-nav-item"><a href="https://www.ionos.es/cookies" class="footer-nav-link" target="_blank">Uso de Cookies</a></li><li class="footer-nav-item"><a href="https://www.ionos.es/terms-gtc/terms-privacy" class="footer-nav-link" target="_blank">Privacidad</a></li><li class="footer-nav-item"><a href="https://www.ionos.es/ayuda" class="footer-nav-link" target="_blank">Centro de Ayuda</a></li><li class="footer-nav-item"><span class="footer-nav-copyright">© 2018 1&amp;1 Internet España S.L.U.</span></li></ul>
+		</div>
+	</div>
+	<a href="https://www.ionos.es/digitalguide/#wrapper" class="btn btn-top" style="display: none; opacity: 1;"><span class="icon-angle-up"></span></a>
+
+</footer>
+
+</div>
+
+  <script>
+    window.cookieconsent_options = {
+      learnMore: 'Política de Cookies.',
+      dismiss: 'OK',
+      message: 'Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación. Si continua navegando, consideramos que acepta su uso. Puede obtener más información, o bien conocer cómo cambiar la configuración de su navegador en nuestra',
+      link: 'https://www.ionos.es/cookies',
+      
+    };
+  </script>
+
+<script src="./ngix-ionos_files/header.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/likes.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/bootstrap.min.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/jquery.main.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/rainbow-custom.min.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/rainbow.linenumbers.min.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/FsCodeSnippet.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/toc-script.js.descarga" type="text/javascript"></script>
+<script src="./ngix-ionos_files/cookieconsent.js.descarga" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="./ngix-ionos_files/font-awesome.min(2).css" media="all"><script type="text/javascript">_satellite.pageBottom();</script><script data-obct="" type="text/javascript">
+  /** DO NOT MODIFY THIS CODE**/
+  !function(_window, _document) {
+    var OB_ADV_ID='001649abe8bf7b4d6841e1cae4cb770f72';
+    if (_window.obApi) {var toArray = function(object) {return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];};_window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));return;}
+    var api = _window.obApi = function() {api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);};api.version = '1.1';api.loaded = true;api.marketerId = OB_ADV_ID;api.queue = [];var tag = _document.createElement('script');tag.async = true;tag.src = '//amplify.outbrain.com/cp/obtp.js';tag.type = 'text/javascript';var script = _document.getElementsByTagName('script')[0];script.parentNode.insertBefore(tag, script);}(window, document);
+obApi('track', 'PAGE_VIEW');
+  setTimeout(function() {
+    obApi('track', '30 Seconds');
+}, 30 * 1000);
+  setTimeout(function() {
+    obApi('track', '60 Seconds');
+}, 60 * 1000);
+  $( ".social-networks a" ).click(function() {
+      obApi('track', 'Social Sharing');
+});
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1247733445296294'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+
+setTimeout(function() {
+fbq('trackCustom', 'SoftConversion',{time: '30 Seconds'});
+}, 30 * 1000);
+  
+</script>
+<noscript><img height=""1"" width=""1"" style=""display:none""
+src=""https://www.facebook.com/tr?id=1247733445296294&ev=PageView&noscript=1""
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code --><div class="tx-cisositecatalyst">
+		
+            <!-- SiteCatalyst code version: H.20.3. Copyright 1997-2009 Omniture, Inc. More info available at http://www.omniture.com -->
+            <script type="text/javascript">var s_account="iaglive,iaggloballive";</script>
+            <script type="text/javascript" src="./ngix-ionos_files/s_code.js.descarga"></script>
+            <script type="text/javascript" src="./ngix-ionos_files/utm.js.descarga"></script>
+            
+                    <script language="JavaScript" type="text/javascript"><!--
+                        function onRequest(data) {
+                            s.server = "1und1internetag.d3.sc.omtrdc.net";
+s.visitorNamespace = "1und1internetag";
+s.thisHost = window.location.host;
+s.currencyCode = "EUR";
+s.charSet = "UTF-8";
+s.trackDownloadLinks = true;
+s.trackExternalLinks = true;
+s.trackInlineStats = true;
+s.linkDownloadFileTypes = "exe,zip,wav,mp3,mov,mpg,avi,wmv,pdf,doc,docx,xls,xlsx,ppt,pptx";
+s.linkInternalFilters = "javascript:,.1und1.de,.1und1.at,.1and1.com,.1and1.ca,.1and1.co.uk,.1and1.es,.1and1.fr,.1and1.pl,.1and1.it,.1und1.info,.1and1.mx,.gmx.de,.web.de,united.domain,cinetic.de,schlund.de"+s.thisHost;
+s.linkLeaveQueryString = false;
+s.linkTrackVars = "None";
+s.linkTrackEvents = "None";
+s.usePlugins = true;
+s.prop11 = "New contract shop";
+s.eVar13 = "New contract shop";
+s.channel = "digitalguide";
+var cookieName = "ac-whorder-es";
+var searchString = document.location.search;
+// removing the '?' at the beginning
+if (searchString.length > 0) {
+  searchString = searchString.substring(1);
+}
+var searchStringParts = searchString.split('&');
+var actionCode = '';
+for (var i=0, j=searchStringParts.length; i<j; i++) {
+  if (searchStringParts[i].search('ac') != -1) {
+    // getting the value by removing the 'ac=' at the beginning
+    actionCode = searchStringParts[i].substring(3);
+  }
+}
+
+// if the actionCode is not in the URL check for the cookie
+if (typeof $.cookie != "undefined" && actionCode == '' && typeof $.cookie(cookieName) != "undefined") {
+  actionCode = $.cookie(cookieName);
+}
+
+if (actionCode != '') {
+  s.campaign = s.eVar23 = actionCode;
+}
+s.prop1 = "servidores_configuracion_nginx-tutorial-primeros-pasos-con-nginxconf";
+s.prop5 = "dg-server";
+s.prop6 = "dg-es";
+s.prop7 = "www.ionos.es";
+s.prop17 = "es";
+s.prop23 = window.navigator.userAgent;
+s.eVar1 = "digitalguide";
+s.eVar2 = "servidores_configuracion_nginx-tutorial-primeros-pasos-con-nginxconf";
+var currentDate = new Date();
+var day = currentDate.getDate();
+var formattedDay = day <= 9 ? "0" + day : day;
+var month = currentDate.getMonth();
+var formattedMonth = month <= 8 ? "0" + (month + 1) : (month + 1);
+var year = currentDate.getFullYear();
+var hours = currentDate.getHours();
+var formattedHours = hours <= 9 ? "0" + (hours) : hours;
+var minutes = currentDate.getMinutes();
+var formattedMinutes = minutes <= 9 ? "0" + (minutes) : minutes;
+
+var timeStamp = formattedDay + "/" + formattedMonth + "/" + year + "-" + formattedHours + ":" + formattedMinutes;
+s.eVar3 = timeStamp;
+s.eVar6 = "dg-server";
+s.eVar7 = "dg-es";
+s.eVar45 = "es";
+                        }
+                        $(window).ready(function() {
+
+                          // send the tracking for the page
+                          onRequest();
+
+                          /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+                          var s_code=s.t();
+                          if (s_code) document.write(s_code);                          
+                
+                        });
+                        //-->
+                    </script>
+                
+            <script type="text/javascript"><!--; if (navigator.appVersion.indexOf("MSIE")>=0) document.write(unescape("%3C")+"\!-"+"-"); //--></script>
+            <noscript>
+                <p><a href="http://www.omniture.com" title="Web Analytics"><img src="" height="1" width="1" alt="" /></a></p>
+            </noscript><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.20.3. -->
+            
+	</div>
+	
+<script type="text/javascript">
+   var page = 'nginx tutorial: primeros pasos con nginx.conf';
+   var pageId = '3';
+   var application = 'T3.DG.ES';
+</script>
+<script type="text/javascript" src="./ngix-ionos_files/browser.js.descarga"></script>
+
+<script type="text/javascript" src="./ngix-ionos_files/rum.js.descarga"></script>
+
+<!-- Google Code for Hauptliste -->
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 1057374712;
+    var google_conversion_label = "tnTZCPDmzgQQ-IOZ-AM";
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+</script>
+<script type="text/javascript" src="./ngix-ionos_files/f(2).txt">
+</script>
+<noscript>
+    <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1057374712/?value=1.00&amp;currency_code=EUR&amp;label=tnTZCPDmzgQQ-IOZ-AM&amp;guid=ON&amp;script=0"/>
+    </div>
+</noscript>
+<script type="text/javascript">
+        var naturalSearchTag = "https://ad.doubleclick.net/ddm/adj/N297201.197812NSO.CODESRV/B9496169.129093287;sz=1x2;ord=";
+
+    var randomNumber = Math.floor((Math.random() * 1000000000000) + 1);
+    var scriptTag = document.createElement("script");
+    scriptTag.src = naturalSearchTag + randomNumber + "?";
+    scriptTag.language = "JavaScript1.1";
+
+    var insertionNode = document.body.firstChild;
+    insertionNode.parentNode.insertBefore(scriptTag, insertionNode);
+</script>
+
+<script type="text/javascript">
+UNOUNO = window.UNOUNO || {};
+UNOUNO.tracking = UNOUNO.tracking || {};
+
+
+UNOUNO.tracking.genericTracking = function(siteCatalystParams, type, name, optFullSet) {
+  /*
+    use this API to track specific events independend from page related tracking
+    uses cases for this can be tracking a survey, a clicked link or search related tracking
+  */
+
+  /*
+    here is one code example of how to track events with SiteCatalyst
+    UNOUNO.tracking.genericTracking makes it possible to use a standardized API for all kinds of such tracking codes
+
+    Example (original code):
+
+    var s=s_gi('iagdev');
+    s.linkTrackVars='events,products';
+    s.linkTrackEvents='event7,event8,event9,event10,event11,event12';
+    s.events='event7,event8,event9,event10,event11,event12';
+    s.products=";;;;event7=25|event8=75|event9=100|event10=0|event11=1";
+    s.tl(this,'o','Linkname');
+
+    Standardized UNOUNO.tracking.genericTracking example:
+
+    UNOUNO.tracking.genericTracking({
+
+      events: 'event7,event8,event9,event10,event11,event12',
+
+      products: ';;;;event7=25|event8=75|event9=100|event10=0|event11=1'
+
+    });
+
+    See wiki for complete API: http://wiki.intranet.1and1.com/bin/view/UE/SitecatalystTracking#Tracking_Events
+
+  */
+
+  var s, key, linkTrackVars, linkTrackEvents;
+
+  if (typeof s_gi !== 'undefined' && typeof s_account !== 'undefined') {
+
+    // s_account is triggered by tag manager script and has values iagdev or iaglive
+
+    s = s_gi(s_account);
+
+    // generate linkTrackVars based on siteCatalystParams
+
+    linkTrackVars = '';
+    /* transactionId  */
+    
+    if ((typeof siteCatalystParams["list2"] != "undefined" && siteCatalystParams["list2"].indexOf("chat-angenommen") == 0  || typeof siteCatalystParams["prop60"] != "undefined" && siteCatalystParams["prop60"].indexOf("ct.btn.MobileZubehoerShop") > -1) && typeof siteCatalystParams["eVar35"] == "undefined"){
+      siteCatalystParams["eVar35"] = UNOUNO.tracking.transactionId;
+    }
+
+    for (key in siteCatalystParams) {
+
+      if (siteCatalystParams.hasOwnProperty(key)) {
+
+        linkTrackVars = linkTrackVars + key + ',';
+
+        if (key === 'events') {
+
+          // if the special param events is used, generate an additionally linkTrackEvents property
+
+          linkTrackEvents = siteCatalystParams[key];
+
+        }
+
+      }
+
+    }
+
+    if (linkTrackVars !== '') {
+
+      // remove trailing comma
+
+      linkTrackVars = linkTrackVars.substr(0, linkTrackVars.length - 1);
+
+      // server time in every request
+      linkTrackVars += ",eVar3";
+      
+      // copy generated linkTrackVars and optional linkTrackEvents to the s object
+      s.linkTrackVars = linkTrackVars;
+
+      if (linkTrackEvents) {
+
+        s.linkTrackEvents = linkTrackEvents;
+
+      }
+
+      // clone all siteCatalystParams to s object
+
+      for (key in siteCatalystParams) {
+
+        if (siteCatalystParams.hasOwnProperty(key)) {
+
+          s[key] = siteCatalystParams[key];
+
+        }
+
+      }
+
+      // finally send SiteCatalyst tracking request with type and name or their defaults
+
+      if(optFullSet == true){
+         s.t(this, type || 'o', name || 'generic-tracking');
+      }
+      else{
+         s.tl(this, type || 'o', name || 'generic-tracking');
+      }
+
+
+
+
+    }
+
+  }
+
+};
+</script>
+
+</body></html>

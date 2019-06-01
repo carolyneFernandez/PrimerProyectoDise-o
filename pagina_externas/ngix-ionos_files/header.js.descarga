@@ -1,0 +1,63 @@
+(function($) {
+  $.fn.header = function(options) {
+    var Header = function(element, options) {
+      this.headerContainer = $(element);
+
+      this.initializeTouchEvents = function() {
+        var deviceType = 'desktop';
+
+        if (deviceType === 'desktop') {
+          // device should support hover events, no need to append pseudo elements
+          return;
+        }
+
+        // create a helper element to prevent first click on our flyout navigation
+        this.headerContainer.find('.header-global-navigation-flyout, .header-pre-navigation-flyout').each(function(flyoutElement) {
+          this.headerContainer.find(flyoutElement).append($('<div />').addClass('header-navigation-flyout-touch'));
+        });
+      }
+
+      this.initializeQuickSearchBarEvents = function() {
+        var searchBarToggle = this.headerContainer.find('#searchbar-toggle');
+        var searchBarContainer = this.headerContainer.find('#searchbar-container');
+
+        if (!!searchBarToggle.length) {
+          searchBarToggle.click(function(e) {
+            e.preventDefault();
+
+            if (!!this.headerContainer.find('.header-global-navigation-container').length) {
+              if (!searchBarContainer.hasClass('active')) {
+                var searchBarContainerWidth = 180;
+                var searchBarContainerOffset = (searchBarContainer.offset().left + (parseInt(searchBarContainer.parents(':eq(0)').css('paddingRight')) || 0)) - searchBarContainerWidth;
+
+                var lastNavigationEntry = $('.header-global-navigation-bar > li:last');
+                var lastNavigationEntryOffset = lastNavigationEntry.offset().left + lastNavigationEntry.width();
+
+                if (searchBarContainerOffset <= lastNavigationEntryOffset) {
+                  searchBarContainerWidth = (searchBarContainer.offset().left - lastNavigationEntry.offset().left)  + (parseInt(searchBarContainer.parents(':eq(0)').css('paddingRight')) || 0);
+                }
+
+                searchBarContainer.css('width', searchBarContainerWidth + 'px');
+              } else {
+                searchBarContainer.css('width', '');
+              }
+            }
+
+            searchBarContainer.toggleClass('active');
+          }.bind(this));
+        }
+      };
+
+      this.initializeTouchEvents();
+      this.initializeQuickSearchBarEvents();
+    };
+
+    return this.each(function() {
+      new Header(this, options || {});  
+    });
+  }
+
+  $(document).ready(function() {
+    $('#header').header();
+  });
+})(jQuery);

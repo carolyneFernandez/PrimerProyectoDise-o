@@ -1,0 +1,58 @@
+// creating namespace if not existing
+window.Ratgeberportal = window.Ratgeberportal || {};
+
+$(document).on('ready', function() {
+
+    Ratgeberportal.bindCommentLike();
+    $('.article_like').on('click', function(e) {
+        Ratgeberportal.updateLike(e);
+    });
+
+    Ratgeberportal.getCountLikes();
+
+});
+
+Ratgeberportal.getCountLikes = function() {
+
+    $.ajax({
+        data: {
+            type: 3503,
+            no_cache: 1,
+            tx_ratgeberportal_latestarticles: {
+                action: 'countLikes',
+                controller: 'Article'
+            }
+        },
+        success: function (result) {
+            $('.likes_count').html(result);
+        },
+        error: function() {
+            // set the content of the comment count to '-' to display something went wrong
+            $('.likes_count').html('-');
+        }
+    });
+
+};
+
+
+Ratgeberportal.bindCommentLike = function() {
+    $('.comment_like').on('click', function(e) {
+        Ratgeberportal.updateLike(e);
+    });
+};
+
+Ratgeberportal.updateLike = function(e) {
+    e.preventDefault();
+
+    $.post(e.currentTarget.href + '&type=3501', {}, function(response) {
+        var data = JSON.parse(response);
+        $(e.currentTarget).parent().find('.likes_count').html(data.likes);
+        if (data.likesNote != '') {
+            $(e.currentTarget).find('.fa').attr('class', 'fa fa-heart');
+        } else {
+            $(e.currentTarget).find('.fa').attr('class', 'fa fa-heart-o');
+        }
+    });
+
+    return false;
+};

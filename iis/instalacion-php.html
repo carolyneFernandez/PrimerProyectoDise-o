@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instalacion en PHP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="../css/fuentes.css">
+ <link rel="stylesheet" href="../css/iis.css">
+</head>
+   <body>
+    <input type="radio" id="show" name="group">
+    <label for="show" id="mostrar">
+     <span>&#9776;Abrir Menu</span>
+    </label>
+    <input type="radio" id="hide" name="group">
+    <label for="hide" id="ocultar" >
+       <span>&#9776;Cerrar Menu</span>
+    </label>
+
+    <div id="contenidomenu" class="menu">
+        <ul class="menu">
+       <li><a href="index.html">Instalación IIS</a></li>
+        <li><a href="instalacion-php.html">Instalación PHP</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="../index.html">Otros Servidores</a></li>
+        </ul>
+    </div>
+    <div class="contenidoPHP">
+        <div class="cabecera">
+        </div>
+
+        <div>
+            <h4>Instalar PHP usando IIS</h4>
+            <p>Descargar archivos de http://www.php.net/downloads.php#v5
+
+Se recomienda bajar los archivos PHP 5.2.1 zip package y las extensiones adicionales PECL PECL 5.2.1 Win32 binaries</p>
+            <ol>
+            <li>Crear directorio en C:PHP y extraer los archivos de ph 5.21zip package y extraer los archivos de PECL 5.2.1 WIN32 binaries en el directorio C:PHPEXT.
+                </li>
+            <li>Renombrar el archivio php.ini-recommended como php.ini</li>
+            <li>Modificar archivo php.ini en las siguientes variables 
+                short_open_tag = On /extension_dir = "c:phpext" / cgi.force_redirect = 0
+            </li>
+
+            <li> Copiar php.ini a c:windows o c:winnt</li>
+
+            <li>Registrar la DLL regsvr32 php5activescript.dll</li>
+
+            <li>Agregar ruta de del directorio php y las extenciones en la opcion de Environment Variable de windows2003</li> 
+            <img src="../imagenes/iis/php-iis.jpg">
+
+            
+            <li>Configurando extensiones en IIS</li>
+                <div><img src="../imagenes/iis/iis1.jpg"></div>
+                <div><img src="../imagenes/iis/iis2.jpg"></div>
+                <div><img src="../imagenes/iis/iis3.jpg"></div>
+                <div><img src="../imagenes/iis/iis4.jpg"></div>
+                <div><img src="../imagenes/iis/iis5.jpg"></div>
+                <div><img src="../imagenes/iis/iis6.jpg"></div>
+                <div><img src="../imagenes/iis/iis7.jpg"></div>
+
+            
+            <li id="una-id">Probando PHP:Crear archivo index.php en C:Inetpubwwwroot con <?php phpinfo(); ?></li>
+            <li>Abrir IE6 y poner la dirección http://localhost/index.php, si le da error verificar los pasos de la instalación.
+
+</li>
+            </ol>
+            <p></p>
+        </div>
+    </div>
+          <div class="pie">@REALIZADO POR <span>Carolyne Fernandez</span></div>
+
+    </body>
+</html> 

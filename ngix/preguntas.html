@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pagina Principal NGIX</title>
+    <link rel="stylesheet" href="../css/ngix.css">
+    <link rel="stylesheet" href="../css/fuentes.css">
+</head>
+    <style>
+    #mostrar::before{
+        content: "➥";
+}
+#ocultar::before{
+        content: "➥";
+}
+
+    </style>
+<body>
+    <div class="slider">
+        <h1>Instalemos NGIX PLUS</h1>
+        <img src="../imagenes/ngix/cabecera1.png">
+    </div>
+<nav class="menuHorizontal">
+<ul>
+    <img src="../imagenes/ngix/logo.jpg">
+    <li><a href="../ngix/inicio.html">Inicio</a></li>
+    <li><a href="../ngix/instalacion.html">Instalacion</a></li>
+    <li><a href="">Enlaces</a>
+      <!--hacemos un menu desplegable -->
+    <ul>
+        <li><a target="_blank" href="../pagina_externas/ngix-ocean.html" target="_blank">Ocean</a></li>
+        
+        <li><a target="_blank" href="../pagina_externas/ngix-ionos.html" target="_blank">Ionos</a></li>
+    </ul>
+    </li>
+    <li><a href="../ngix/preguntas.html">Preguntas frecuentes</a></li>
+    <li><a href="../index.html">Otros servicios</a></li>
+
+</ul>
+</nav>
+     <style>
+         #preguntas .content{
+               border-collapse: separate;
+    display: none;
+    background: lightgray;
+    width: 98%;
+    border: 1px solid black;
+    padding: 1%;
+    color: white;
+         }
+        #preguntas a:focus + .content{
+            display: block;
+            
+        }
+         div:not([style*="display: block"]):last-child{ /* bla */}
+
+    </style>
+<div class="cuerpo" id="preguntas">
+   
+<h3>Preguntas frecuentes</h3>
+<h4>NGINX PLUS</h4>
+    <a href="#"  name="as">¿Cuándo debo usar el código abierto NGINX?</a>    
+    <div class="content" name="as">
+        <p>El código abierto de NGINX es apropiado si ...</p>
+        <ul>
+        <li>desea compilar en módulos de terceros no incluidos en NGINX Plus Extras </li>
+        <li>desea crear sus propios módulos personalizados</li>
+        <li>desea mantener sus propios paquetes y soluciones de seguridad</li>
+        <li>está trabajando en un entorno donde no necesita soporte.</li>
+
+        </ul>
+    </div>
+     <a href="#" >¿Quién se beneficia más de NGINX Plus?</a>    
+    <div class="content">
+        <p>Empresas que:</p>
+        <ul>
+        <li>Está ejecutando una aplicación comercial o sitio web que requiere una experiencia de usuario predecible, confiable y de alto rendimiento</li>
+        <li>Han usado NGINX OSS, pero quieren reducir la complejidad y tener una compilación NGINX compatible</li>
+         <li>Están migrando sus arquitecturas web de una aplicación monolítica a una arquitectura liviana, "escalada", distribuida y con componentes (y necesitan una "capa de enrutamiento / shell" externa)</li>
+            <li>Se están moviendo a entornos virtualizados / en la nube y necesitan una alternativa más moderna y compatible con la nube a sus soluciones de LB / ADC basadas en hardware existentes</li>
+
+        </ul>
+     
+    </div>
+     <a href="#" >¿NGINX Plus viene con módulos de terceros incluidos?</a>    
+    <div class="content">
+        <p>El paquete estándar NGINX Plus contiene solo los módulos creados por NGINX de la compilación de código abierto oficial y las extensiones NGINX Plus. Sin embargo, los módulos de terceros se pueden cargar dinámicamente en una instancia de NGINX Plus en ejecución. Construimos y mantenemos los módulos de terceros más utilizados, una lista completa de estos módulos está disponible aquí .Los módulos personalizados o de terceros que no están en la lista anterior también se pueden cargar dinámicamente en una instancia de NGINX Plus en ejecución. Para obtener más detalles sobre cómo hacer esto, consulte esta publicación del blog .</p>
+     
+    </div>
+     <a href="#" >¿NGINX Plus incluye almacenamiento en caché? ¿Es solo para contenido estático?</a>    
+    <div class="content">
+        <p>NGINX Plus sí incluye un motor de almacenamiento en caché extremadamente escalable para contenido tanto estático como dinámico. El almacenamiento en caché es compatible con todos los modos / protocolos de proxy, como HTTP / FastCGI / uwsgi / SCGI. El contenido almacenado en caché se almacena en un caché híbrido: el contenido activo se almacena en la memoria y todo el contenido se almacena en un caché en disco que persiste durante los reinicios y reinicios del software. Para obtener más información, consulte:  Content Caching with NGINX Plus</p>
+    </div>
+</div>
+	</body>
+</html>

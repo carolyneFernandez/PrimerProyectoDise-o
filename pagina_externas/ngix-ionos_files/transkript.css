@@ -1,0 +1,59 @@
+.transkript {
+    font-family: Arial;
+    font-size: 16px;
+    background: #f9f9f9;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.transkript h1 {
+    font-size: 28px;
+    line-height: 34px;
+}
+
+.transkript h2 {
+    font-size: 22px;
+    line-height: 27px;
+}
+
+.transkript ul {
+    list-style-type: disc;
+}
+
+.transkript ul li {
+    font-size: 16px;
+    font-family: 'FrutigerLTW01-57Condens';
+    line-height: 26px;
+}
+
+.transkript ul li strong {
+    font-family: 'Frutiger Cn Blk';
+    font-weight: normal;
+}
+
+.transkript label {
+    display: inline;
+    color: #003d8f;
+}
+
+.transkript .transkript-container {
+    padding: 10px;
+    width: 90%;
+    display: none;
+}
+
+.transkript input[type=checkbox] {
+    display: none;
+}
+
+.transkript input[type=checkbox]:checked ~ .transkript-container {
+    display: block;
+}
+
+.transkript label:before {
+    content: attr(data-show);
+}
+
+.transkript input[type=checkbox]:checked + .transkript-toggle label:before {
+    content: attr(data-hide);
+}

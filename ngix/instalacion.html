@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pagina Principal NGIX</title>
+    <link rel="stylesheet" href="../css/ngix.css">
+    <link rel="stylesheet" href="../css/fuentes.css">
+
+</head>
+<body>
+    <div class="slider">
+        <h1>Instalemos NGIX PLUS</h1>
+
+        <img src="../imagenes/ngix/cabecera1.png">
+
+    </div>
+<nav class="menuHorizontal">
+<ul>
+    <img src="../imagenes/ngix/logo.jpg">
+    <li><a href="../ngix/inicio.html">Inicio</a></li>
+    <li><a href="../ngix/instalacion.html">Instalacion</a></li>
+    <li><a href="">Enlaces</a>
+      <!--hacemos un menu desplegable -->
+    <ul>
+        <li><a target="_blank" href="../pagina_externas/ngix-ocean.html" target="_blank">Ocean</a></li>
+        
+        <li><a target="_blank" href="../pagina_externas/ngix-ionos.html" target="_blank">Ionos</a></li>
+    </ul>
+    </li>
+    <li><a href="../ngix/preguntas.html">Preguntas frecuentes</a></li>
+    <li><a href="../index.html">Otros servicios</a></li>
+
+</ul>
+</nav>
+
+        <div class="cuerpo">
+            <h2>Instalando NGINX Plus en Debian y Ubuntu</h2>
+            <ul>
+                <li>Debian 8 ("Jessie")</li>
+                <li>Debian 9 ("estirar")</li>
+                <li>Ubuntu 14.04 LTS ("Trusty") (i386, x86_64, aarch64)</li>
+                <li>Ubuntu 16.04 LTS ("Xenial") (i386, x86_64, ppc64le, aarch64)</li>
+                <li>Ubuntu 18.04 ("Bionic")</li>
+
+            </ul>
+            <p>Para instalar NGINX Plus en Debian o Ubuntu:</p>
+            <ol>
+                <li>Cree el directorio / etc / ssl / nginx :
+                    <span>sudo mkdir / etc / ssl / nginx</span>
+                    <span>cd / etc / ssl / nginx</span>
+                </li>
+                <li>Inicie sesión en el Portal del cliente NGINX Plus y descargue los archivos nginx-repo.crt y nginx-repo.key .</li>
+                <li>Copie los archivos al directorio / etc / ssl / nginx / :
+                <span>sudo cp nginx-repo.crt / etc / ssl / nginx /</span>
+                 <span>sudo cp nginx-repo.key / etc / ssl / nginx /</span>
+
+                </li>
+                <li>Descargue la clave de firma NGINX de nginx.org y agréguela:
+                <span>sudo pkg install ca_root_nss</span></li>
+                <li>Instale el paquete apt-utils y el repositorio NGINX Plus.
+                    <span>sudo wget https://nginx.org/keys/nginx_signing.key</span>
+                    <span>sudo apt-key add nginx_signing.key</span>
+                </li>
+                <ul>
+                    <li>Para debian
+                        <span>sudo apt-get install apt-transport-https lsb-release-certificados ca</span>
+                        <span>printf "deb https://plus-pkgs.nginx.com/debian` lsb_release -cs` nginx-plus \ n "| sudo tee /etc/apt/sources.list.d/nginx-plus.list</span>
+                    </li>
+                    <li>Para Ubuntu
+                    <span>sudo apt-get install apt-transport-https lsb-release-certificados ca</span>
+                    <span>printf "deb https://plus-pkgs.nginx.com/ubuntu` lsb_release -cs` nginx-plus \ n "| sudo tee /etc/apt/sources.list.d/nginx-plus.list</span>
+                    </li>
+                </ul>
+                <li>Descargue el archivo 90nginx en /etc/apt/apt.conf.d :<span>sudo wget -q -O /etc/apt/apt.conf.d/90nginx https://cs.nginx.com/static/files/90nginx
+</span></li>
+                <li>Actualice la información del repositorio:<span>sudo apt-get update</span></li>
+                <li>Instale el paquete nginx-plus . Cualquier paquete anterior de NGINX Plus se reemplaza automáticamente.<span>sudo apt-get install -y nginx-plus</span></li>
+
+            </ol>
+
+        </div>
+	</body>
+</html>
