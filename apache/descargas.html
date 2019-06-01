@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargas de Apache</title>
+        <link rel="stylesheet" href="../css/apache.css">
+        <link rel="stylesheet" href="../css/fuentes.css">
+        
+</head>
+<style>
+
+</style>
+<body >
+         <div class="cabecera"></div>
+
+ <div class="menu">
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="instalacion.html">Instalación</a></li>
+        <li><a href="#">Apache Apoyo</a>
+        <ul class="interior">
+                <li><a  href="patrocinadores.html">Patrocinadores</a></li>
+                <li><a  href="patrocinio.html">Patrocinio</a></li>
+         </ul>
+        </li>
+        <li><a href="descargas.html">Descargar</a></li>
+        <li> <a href="../index.html">Otros Servidores</a></li>
+
+    </ul>
+
+</div>
+
+    <div class="cuerpo">
+        <p>Sugerimos el siguiente sitio espejo para su descarga:</p>
+        <a target="_blank" href="http://apache.rediris.es/">http://apache.rediris.es/</a>
+        <p>Otros sitios espejo se sugieren a continuación.</p>
+        <p>Es esencial que verifique la integridad del archivo descargado utilizando la firma ( .ascarchivo) de PGP o un hash ( .md5o .sha*archivo).</p>
+        <p>Utilice solo los espejos de copia de seguridad para descargar las firmas / hashes KEYS, PGP y MD5 o si no hay otros espejos que funcionen.</p>
+        <h2>HTTP</h2>
+        <a  target="_blank" href="http://apache.rediris.es/">http://apache.rediris.es/</a>
+        <a  target="_blank" href="http://apache.uvigo.es/">http://apache.uvigo.es/</a>
+        <a  target="_blank" href="http://ftp.cixug.es/apache/">http://ftp.cixug.es/apache/ </a>
+        <h2>SITIOS DE COPIA DE SEGURIDAD </h2>
+        <p>Utilice solo los espejos de copia de seguridad para descargar las firmas / hashes KEYS, PGP y MD5 o si no hay otros espejos que funcionen.</p>
+        <a target="_blank" href="https://www-us.apache.org/dist/">https://www-us.apache.org/dist/ </a>
+         <a target="_blank" href="https://www-eu.apache.org/dist/">https://www-eu.apache.org/dist/</a>
+        <p>Es esencial que verifique la integridad del archivo descargado utilizando la firma ( .ascarchivo) de PGP o un hash ( .md5o .sha*archivo). Lea la sección Verificación de las versiones de Apache Software Foundation para obtener más información sobre por qué debe verificar nuestras versiones.
+
+La firma PGP puede ser verificada usando PGP o GPG. Primero descargue el archivo de firma y KEYSel de ascfirma para la distribución correspondiente. Asegúrese de obtener estos archivos desde el sitio de distribución principal, en lugar de hacerlo desde un espejo. Luego verifique las firmas usando</p>
+        <span class="descargas">% gpg --import KEYS  
+% gpg --verify download_file.asc download_file</span>
+        <p>o</p>
+            <span class="descargas">% pgpk -a TECLAS 
+% pgpv descargado_archivo.asc</span>
+        <p>o</p>
+<span class="descargas">% pgp -ka KEYS 
+% pgp descargado_file.asc        </span>    
+        <p>o</p>
+        <span class="descargas">% gpg --print-md SHA1 download_file
+</span>
+       
+    </div>
+    
+<div class="pie">
+    <p>Realizado por @Carolyne Fernandez Prada</p>
+    </div>
+</body>
+</html>

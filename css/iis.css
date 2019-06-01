@@ -1,0 +1,215 @@
+body {
+    margin:0;
+}
+
+.menu ul, .menu li{
+    margin:0;
+    padding:5% 0%;
+    list-style:none inside;
+}
+   
+
+.menu ul {
+    margin: 30% auto;
+    padding: 7% 2%;
+}
+
+.menu a {
+    display: block;
+    font-size: 120%;
+    color: #eee;
+    text-decoration: none;
+    
+}
+
+.menu a:hover{
+    padding: 2%;
+    color:#fff;
+    background-color: #ff4d4d;
+
+}
+
+
+
+    #hide,#show{
+        display: none;
+    }
+    #ocultar{
+        display: none;
+    }
+    #mostrar{
+        padding: 2%;
+        color:white;
+        background-color: #800000;
+        display: block;
+    }
+    #contenidomenu{
+        position: fixed;
+        height: 100%;
+        width: 0;
+        top: 0;
+        background-color: #990000;
+        overflow-x: hidden;
+        transition: 0.4s;
+    }
+    input#show:checked ~ #contenidomenu {
+          width: 20%;
+           
+    }
+    input#show:checked ~ #mostrar {
+        display: none;
+    }
+    input#show:checked ~ #ocultar {
+        padding: 2%;
+        display: block;           
+        color:white;
+        background-color: #800000;
+    }
+    input#show:checked ~ .contenido, input#show:checked ~ #mostrar, input#show:checked ~ #ocultar, input#show:checked ~ .contenidoPHP{
+        padding: 2%;
+        margin-left: 20%;
+        transition: margin-left .4s;
+    }
+
+    .contenido,.contenidoPHP{
+        padding: 2%;
+    }
+    
+    /*******CSS DEL CONTENIDO***************/
+    .contenido img{
+        width: 30%;
+        -webkit-transition: width 2s; 
+        transition: width 2s;
+    }
+    .contenido img:hover{
+        cursor: zoom-in;
+        width: 60%;
+    }
+    .contenido a:hover{
+        cursor:alias;
+        color:red;
+    }
+/**************************************/
+
+/***************MENU*/
+
+
+    h1 {
+
+        margin: auto;
+        text-align: center;
+        color: #f90;
+        font-size: 300%;
+        font-family: alien;
+        font-weight: normal;
+    }
+    
+    .contenido {
+        transition: margin-left .4s;
+        padding: 3%;
+    }
+    .cabecera{
+            background-position: 50% 50%;
+        height: 130px;
+        background-image: url(../imagenes/iis/cabecera.png);
+        background-repeat: no-repeat;
+        width: 100%;
+    
+        
+    }
+    .contenido div:nth-child(2) > img{
+        width: 60%;
+    }
+.contenidoPHP img{
+    border: 1px dashed red;
+    border-radius: 20px 20px;
+
+}
+.contenidoPHP img:hover{
+    transform:rotate(720deg);
+    transition: all 1s ease-in-out;
+}
+
+/*************PAGINA COMUN**************************/
+.pie{
+    text-align: center;
+    background-color: black;
+   bottom: 0;
+    width: 100%;
+    color: white;
+    clear: both;
+    padding: 1% 0%;
+}
+
+
+/******video******/
+.contenido video{
+    border: 1px solid black;
+    width: 40%;
+}
+   .video{
+    width: 40%;
+    float: left;
+    margin-right: 2%;
+    margin-left: 1%;
+
+    }
+    .video video{
+        width: 100%;
+    }
+    .video p {
+        margin-bottom: 0;
+        margin-top: 0;
+        background: white;
+        padding: 4%;
+}
+.video:hover{
+ border: 4px inset ;   
+}
+h4{
+    font-family: alien;
+    color:red;
+}
+.video p:not(:first-of-type):first-letter{
+        font-size: 200%;
+        color: #8A2BE2;
+    }
+.video p:not(:first-of-type){
+        color:firebrick;
+    }
+@media only screen and (max-width: 600px) {
+    .video {
+        width: 100%;
+        clear: both;
+        border:0;
+        
+    }
+    .video:hover{
+        
+        border:0;
+        
+    }
+    .video video{
+        width: 80%;
+    }
+    #contenidomenu {
+    position: static;
+        width: 100%;
+    }
+    #ocultar,#mostrar{
+        display: none;
+    }
+    .menu ul{
+        margin: 0;
+    }
+    .contenidoPHP img{
+        width: 70%;
+    }
+    h1{
+            font-size: 100%;
+
+    }
+    .cabecera{
+        background-size:80%;
+    }
+    

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalacion de  Apache</title>
+        <link rel="stylesheet" href="../css/apache.css">
+        <link rel="stylesheet" href="../css/fuentes.css">
+        
+</head>
+<body >
+ <div class="cabecera"></div>
+
+ <div class="menu">
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="instalacion.html">Instalación</a></li>
+        <li><a href="#">Apache Apoyo</a>
+        <ul class="interior">
+                <li><a  href="patrocinadores.html">Patrocinadores</a></li>
+                <li><a  href="patrocinio.html">Patrocinio</a></li>
+         </ul>
+        </li>
+        <li><a href="descargas.html">Descargar</a></li>
+        <li> <a href="../index.html">Otros Servidores</a></li>
+
+    </ul>
+
+</div>
+     
+    <div class="cuerpo">
+        <input type="radio" id="show" name="group">
+        <label for="show" id="mostrar">
+  	     <span>Ver video explicativo</span>
+        </label>
+        <input type="radio" id="hide" name="group">
+        <label for="hide" id="ocultar" >
+	       <span>Ocultar Video Explicativo</span>
+        </label>
+
+        <div id="content">
+    
+            <video controls>
+              <source src="../videos/configurarApache.mp4" type="video/mp4">
+            </video>  
+        </div>
+        <h2>INSTALACION</h2>
+        <h3>Instalacion Apache</h3>
+  
+        <h5>Prerrequisitos</h5>
+        <p>Antes de empezar a realizar estos pasos, se debe tener un usuario regular configurado en su servidor, éste debe corresponder a una cuenta con privilegios de sudo, que no sea superusuario (root). Adicionalmente, necesitarás habilitar un cortafuegos básico que bloquee los puertos no esenciales. Puedes aprender cómo configurar una cuenta de usuario regular y cómo ajustar el cortafuegos para tu servidor, siguiendo nuestra guía inicial de configuración para Ubuntu 18.04.Cuando se tenga una cuenta disponible, ingresa con el usuario diferente a superusuario que mencionamos anteriormente y podrás empezar.</p>
+ 
+        <h5>Paso 1</h5>
+
+        <p>Instalar Apache Apache se encuentra disponible dentro de los repositorios de software predeterminados de Ubuntu, haciendo posible la instalación mediante las herramientas convencionales de administración de paquetes.Empezaremos por actualizar el índice de los paquetes locales. Esto, para garantizar que en él se refleje las cargas más recientes de las nuevas versiones de los paquetes.</p>
+        <p>sudo apt update</p>
+        <p>A continuación, instala el paquete apache2:
+        <span class="comandoInst">sudo apt install apache2</span>
+        <img class="comando" src="../imagenes/apache/apacheinstall1.png"/>
+
+        <p>Después de confirmar la instalación, apt instalará Apache al igual que todas las dependencias requeridas.
+        Después de que está instalado,debemos escribir localhost o 127.0.0.1 en la barra de direcciones de nuestro navegador para comprobar que el servidor Apache se está ejecutando correctamente en nuestro equipo.
+        </p>
+        <p>Posterior a esto solo debemos ejecutar el siguiente comando para dar permisos</p>
+        <span class="comandoInst">sudo chown www-data: www-data /var/www/html/ -R </span>
+
+        <img class="comando" src="../imagenes/apache/apacheinstall2.png"/>
+        <h3>Instalacion PHP</h3>
+         <h5>Paso 2</h5>
+        <p>PHP es el componente de nuestra configuración que procesará código para mostrar contenido dinámico. Puede ejecutar secuencias de comandos, conectarse a nuestras bases de datos MySQL para obtener información, y entregar el contenido procesado a nuestro servidor web para mostrarlo.</p>
+
+        <p>Una vez más podemos aprovechar el sistema apt para instalar nuestros componentes. Vamos a incluir algunos paquetes de ayuda, así, por lo que el código PHP se puede ejecutar en el servidor Apache y hablar con nuestra base de datos MySQL:</p>
+        <span class="comandoInst">sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql</span>
+
+        <span class="comandoInst">sudo apt-get install -y python-software-properties</span>   
+        Ahora lo siguiente será agregar este repositorio para poder instalar la versión más actual de PHP.
+       <span class="comandoInst">sudo add-apt-repository -y ppa:ondrej/php</span>
+        <span class="comandoInst">sudo apt install php7.1 php7.0-cli php7.1-common php7.1-mbstring php7.1-intl php7.1-xml php7.1-mysql php7.1-mcrypt</span>
+        <p>La dirección que desea visitar será:</p>
+        <span class="comandoInst">http://dirección_IP_del_servidor/info.php</span>
+        <p>La página que verá debe ser algo como esto:</p>
+        <img class="comando" src="../imagenes/apache/prueba.png"/>
+         
+        </div>
+    
+      <div class="pie">@REALIZADO POR Carolyne Fernandez</div>
+</body>
+</html>

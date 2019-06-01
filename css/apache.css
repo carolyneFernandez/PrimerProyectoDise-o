@@ -1,0 +1,317 @@
+html,body {
+    font-family: monospace;
+    height: 100%;
+    margin: 0;
+}
+
+
+/*************PAGINA COMUN**************************/
+/*****cabecera******/
+ .cabecera{
+    border-bottom: 2px solid black;
+    background-image: url(../imagenes/apache/cabecera1.png);
+    background-position:  center center;
+    height: 30%;
+     background-repeat: no-repeat;
+}
+
+/*******menu**********/
+.menu{
+        background: #e7e7e7;
+    }
+    .menu ul{
+       list-style-type: none;
+        display:flex;
+        margin:0;
+    }
+    .menu ul li ul{
+        display: none;
+
+    }
+    
+    .menu > ul > li{
+        width: 10%;
+        padding: 1%;
+        margin: auto;
+        display: block;
+    }
+    li:hover > a{ /*todos los a que son hijos directos de li*/
+        
+        color: #fff;
+    
+    }
+    
+    a{
+        color: #585ac2;
+        text-decoration: none;
+    }
+.menu ul li a:hover + ul, .menu ul li ul:hover{
+        display:block;
+        position: absolute;
+        background: white;
+        padding: 2% 0%;
+        margin-top: -1%;
+        border: 1px solid;
+			}
+
+    .menu ul li:hover{
+            background: #a3a4dd;
+
+    }
+    .interior li{
+        padding: 6px;
+        margin-bottom: 3%
+    }
+    
+     li:nth-child(4) > a::after{
+            content: '\▼';
+
+    }
+/***********cuerpo pagina*****************/
+    html,body{
+        height: 100%;
+    }
+    .container{
+        position: relative;
+        background: #e7e7e7;
+    } 
+    .container div{
+        float: left;
+        width: 30%;
+    }
+
+    .wigyet {
+        background: #e7e7e7;
+        padding: 10%;
+        margin: 5%;
+        border: 1px solid;
+    }
+
+    .izquierda{
+        float: left;
+        width: 30%;
+    }
+    .izquierda h3{
+        color:#303284;
+    }
+       .izquierda h5{
+        color:cadetblue;
+    }
+    
+    .derecha img{
+        margin: auto;
+    }
+    h2:nth-child(1){
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        text-shadow: -5px 4px 4px royalblue;
+          text-align: center;
+        font-size: 2.5em;
+        font-weight: 100;
+        line-height: .4em;
+        font-family: broadcast; 
+    }
+    h2:not(:first-of-type):first-letter{
+
+        font-size: 200%;
+        color: #8A2BE2;
+    }
+
+    .derecha{
+        padding: 1%;
+    }
+
+
+/**********tabla******/
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) > td:nth-child(1) { 
+    font-weight: bold;
+    color: blue;}
+tr:nth-child(odd) > td:nth-child(2) {
+    color:blueviolet;
+}
+tr:nth-child(odd){
+    font-weight: bold;
+}
+/********PIE***********/
+.pie{
+    text-align: center;
+    background-color: black;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    clear: both;
+    padding: 1% 0%;
+}
+
+/*******Tabla*******/
+.tabla {
+  width: 100%;
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+.tabla tr, .tabla td {
+    padding: 1%;
+  border: 1px solid #000;
+}
+    .tabla th{
+        padding: 1%;
+        text-align: left;
+        border: 1px solid #000;
+
+    }
+/*******DESCARGAS********/
+.descargas{
+    display: block;
+    background: #e7e7e7;
+    padding: 1%;
+    border: 1px dashed;
+    font-size: 15px;
+    width: 60%;
+}
+.descargas + p{
+    
+    font-family: adine;
+    font-size: 70px;
+    margin: 0;
+}
+
+  .derecha h5{
+      
+        color: #a3a4dd;
+        font-size:15px;
+    }
+    .comando{
+        transition-property: width;
+        transition-duration:  2s;
+        width: 30%;
+    }
+    .comando:hover{
+        cursor: zoom-in;/*hacer una lupa con + */
+        animation-duration: 20s;
+        width: 60%;
+
+    }
+    .cuerpo{
+        width: 80%;
+        margin: auto;
+    }
+    .comandoInst{
+        color: royalblue;
+        margin:2%;
+        display: block;
+    }
+    .comandoInst::before{
+        content: "➥";
+    }
+    .cuerpo h3{
+        color: blue;
+        
+    }
+   
+    .cuerpo h5{
+        color: cadetblue;
+        
+    }
+
+/********************/
+.platino{
+    height: 180px;
+    background-size: 20%;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-image: url(../imagenes/apache/platinum.png);
+
+}
+.oro{
+    height: 180px;
+    background-size: 20%;
+    background-position: 100%;
+    background-repeat: no-repeat;
+
+    background-image: url("../imagenes/apache/gold.png");
+
+}
+.bronce {
+    height: 180px;
+    background-size: 20%;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../imagenes/apache/bronze.png");
+
+}
+.plata{
+    height: 180px;
+    background-size: 20%;
+    background-position: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../imagenes/apache/silver.png");
+
+}
+/************VIDEOS**************/
+video{
+    width: 50%;
+}
+
+#mostrar::before{
+    content: '≡';
+}
+#ocultar::before{
+    content: '≡';
+}
+#show,#hide {
+display:none;
+}
+
+div#content {
+display:none;
+padding:10px;
+}
+
+input#show:checked ~ div#content,input#show:checked ~ #ocultar{/*hermanos no adyacentes*/
+display:block;
+
+}
+input#show:checked + #mostrar{/*hermano ayacente*/
+    display: none;
+}   
+
+input#hide:checked ~ div#content{
+    display:none;
+}
+
+
+#ocultar{
+    display: none;
+}
+@media only screen and (max-width: 600px) {
+    .cuerpo h2 {
+        font-size: 1em;
+        font-family: initial;
+        letter-spacing: 0;
+        line-height: normal;
+        text-shadow: 0 0 0;    
+    }
+     tabla {
+        font-size: 1em;
+        font-family: initial;
+        letter-spacing: 0;
+        line-height: normal;
+        text-shadow: 0 0 0;    
+    }
+    .menu ul {
+    display: inline;
+    }
+    .izquierda {
+    width: 100%; 
+}
+    .platino,.oro,.bronce,.plata{
+    height: 300px;
+    
+}
+
+    
+       
+}

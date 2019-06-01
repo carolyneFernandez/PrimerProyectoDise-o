@@ -1,0 +1,159 @@
+html,body {
+    font-family: monospace;
+    height: 100%;
+    background-color: azure;
+}
+
+
+/* Pon aquí tu css boncio */
+.menuHorizontal img{
+    width: 15%;
+    height: 15%;
+}
+.menuHorizontal ul{
+    margin-top: 0;
+    background: #20201E;
+    display: flex;
+    list-style: none;
+
+
+}
+.menuHorizontal li a{
+    margin: .5em;
+    color:white;
+    text-decoration:none;
+    padding: .7em;
+}
+.menuHorizontal li:hover{
+    background:  #514646;
+}
+	
+.menuHorizontal ul li ul{
+    display: none;
+    padding: .5em;
+
+}	
+.menuHorizontal ul li ul li{
+    padding: .3em;
+    margin: .3em;
+    text-decoration:none;
+
+}	
+.menuHorizontal > ul > li{
+
+    display: block;
+    padding: .2em;
+}	
+.menuHorizontal ul li a:hover + ul, .menuHorizontal ul li ul:hover {
+    display:block;
+    position: absolute;
+
+}
+
+.cuerpo{
+    padding: 2%;
+}
+
+/*********CONTENIDO***************/
+       .cuerpo img {
+            width: 90%;
+            border: 2px groove;
+            border-radius: 5% 5%;
+        }
+        .cuerpo div{
+            float: left;
+            width: 50%;
+        }
+   
+        .cuerpo div:nth-child(2) > h2{
+            font-family: inherit;
+            font-size: 50px;            
+        }
+        .cuerpo div:nth-child(2) > p{
+            font-size: 18px;  
+              font-style: oblique;
+
+        }
+        .cuerpo h2::first-letter { 
+    font-size: 60px;
+    color: darkgreen;
+}
+  
+/***************/
+    .cuerpo a{
+        color: white;
+        background: gray;
+        padding: 1%;
+        display: block;
+        text-decoration: none;
+        border: 1px solid black;
+    }
+/*******CSS DE PAGINA DE PREGUNTAS*************/
+#preguntas h3{
+    margin: 0;
+    font-size: 50px;
+    text-align: center;
+    font-family: escuela;
+    font-weight: 100;
+}
+
+#preguntas h4{
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 3px solid black;
+    color: green;
+}
+/*****lista*********/
+ol li span::before{
+    content: "$";
+}
+ol li span{
+    color: white;
+    background: #4FA288;
+    display: block;
+    margin: 1%;
+    padding: 1%;
+}
+
+
+/****cabecera**********/
+.slider {
+    background-image: url(../imagenes/ngix/cabecera3.png);
+    background-repeat: no-repeat;
+    background-position:right;
+    background-size: 35%;
+}
+
+.slider img {
+    margin: auto;
+    width: 20%;
+}
+.slider h1{
+    margin: 0;
+    font-size: 50px;
+    font-family: gorge;
+    float: left;
+}
+
+@media only screen and (max-width: 600px) {
+
+.cuerpo div {
+    width: 100%;
+}
+    .cuerpo div:nth-child(2) > h2 {
+    font-size: 20px;
+    }
+    .cuerpo h2::first-letter {
+    font-size: 20px;
+}
+    .cuerpo div:nth-child(2) > p {
+    font-size: 10px;
+    font-style: normal;
+}
+    .menuHorizontal ul {
+        display: inline-block;
+    }
+    .slider h1 {
+        font-size: 15px;
+    }
+}
